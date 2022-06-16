@@ -1,0 +1,5 @@
+<div>
+    <?= $msg ?>
+    <?= $results ?>
+    
+</div>
