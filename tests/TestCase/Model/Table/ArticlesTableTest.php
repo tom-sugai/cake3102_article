@@ -71,7 +71,7 @@ class ArticlesTableTest extends TestCase
     public function testValidationDefault()
     {
         // エラーが無いとき
-        $article = $this->ArticlesTable->newEntity([
+        $article = $this->Articles->newEntity([
             'title' => str_repeat('a', 10),
             'body' => str_repeat('b', 256),
         ]);
@@ -79,7 +79,7 @@ class ArticlesTableTest extends TestCase
         $this->assertSame($expected, $article->getErrors());
 
         // 必須項目が空のとき
-        $emptyArticle = $this->ArticlesTable->newEntity([
+        $emptyArticle = $this->Articles->newEntity([
             'title' => '',
             'body' => '',
         ]);
@@ -90,7 +90,7 @@ class ArticlesTableTest extends TestCase
         $this->assertSame($expected, $emptyArticle->getErrors());
 
         // 文字数が少ないとき
-        $lessArticle = $this->ArticlesTable->newEntity([
+        $lessArticle = $this->Articles->newEntity([
             'title' => str_repeat('a', 9),
             'body' => str_repeat('b', 9),
         ]);
@@ -101,7 +101,7 @@ class ArticlesTableTest extends TestCase
         $this->assertSame($expected, $lessArticle->getErrors());
 
         // 文字数が多いとき
-        $moreArticle = $this->ArticlesTable->newEntity([
+        $moreArticle = $this->Articles->newEntity([
             'title' => str_repeat('a', 256),
             'body' => str_repeat('b', 256),
         ]);
