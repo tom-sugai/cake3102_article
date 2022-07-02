@@ -77,7 +77,7 @@ class ArticlesTableTest extends TestCase
             'title' => str_repeat('a', 10),
             'body' => str_repeat('b', 256),
         ]);
-        debug($article);
+        //debug($article);
         $expected = [];
         $this->assertSame($expected, $article->getErrors());
         
@@ -100,8 +100,8 @@ class ArticlesTableTest extends TestCase
         ]);
         //debug($lessArticle);
         $expected = [
-            //'title' => ['minLength' => 'The provided value is invalid'],
-            //'body' => ['minLength' => 'The provided value is invalid'],
+            'title' => ['minLength' => 'The provided value is invalid'],
+            'body' => ['minLength' => 'The provided value is invalid'],
         ];
         //debug($lessArticle->getErrors());
         $this->assertSame($expected, $lessArticle->getErrors());
