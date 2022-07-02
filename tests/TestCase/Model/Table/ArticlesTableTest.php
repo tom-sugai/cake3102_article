@@ -77,9 +77,9 @@ class ArticlesTableTest extends TestCase
             'title' => str_repeat('a', 10),
             'body' => str_repeat('b', 256),
         ]);
+        debug($article);
         $expected = [];
         $this->assertSame($expected, $article->getErrors());
-        
         
         // 必須項目が空のとき
         $emptyArticle = $this->Articles->newEntity([
@@ -91,24 +91,21 @@ class ArticlesTableTest extends TestCase
             'title' => ['_empty' => 'This field cannot be left empty'],
             //'body' => ['_empty' => 'This field cannot be left empty'],
         ];
-        //debug($emptyArticle->getErrors());
-        //debug($expected);
         $this->assertSame($expected, $emptyArticle->getErrors());
-        
+    
         // 文字数が少ないとき
         $lessArticle = $this->Articles->newEntity([
             'title' => str_repeat('a', 9),
             'body' => str_repeat('b', 9),
         ]);
-        debug($lessArticle);
+        //debug($lessArticle);
         $expected = [
             //'title' => ['minLength' => 'The provided value is invalid'],
             //'body' => ['minLength' => 'The provided value is invalid'],
         ];
-        debug($lessArticle->getErrors());
-        debug($expected);
+        //debug($lessArticle->getErrors());
         $this->assertSame($expected, $lessArticle->getErrors());
-        /**
+         
         // 文字数が多いとき
         $moreArticle = $this->Articles->newEntity([
             'title' => str_repeat('a', 256),
@@ -117,8 +114,9 @@ class ArticlesTableTest extends TestCase
         $expected = [
             'title' => ['maxLength' => 'The provided value is invalid'],
         ];
+        //debug($moreArticle);
         $this->assertSame($expected, $moreArticle->getErrors());
-        */
+        
 
     }
 
