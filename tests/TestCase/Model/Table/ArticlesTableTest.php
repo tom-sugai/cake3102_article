@@ -125,5 +125,15 @@ class ArticlesTableTest extends TestCase
         $this->markTestIncomplete('Not implemented yet.');
     }
 
+    /** find Article test */
+    public function testArticlesTableFind() {
+        $result = $this->Articles->find('all')->first();
+        $this->assertFalse(empty($result));
+        $this->assertTrue(is_a($this->Article,'\App\Model\Entity\Article'));
+        $this->assertEquals($result-id,1);
+        $this->assertStringsStartsWith('Lorem ipsum dolor sit amet', $result->title);
+    }
+
+    
     
 }
