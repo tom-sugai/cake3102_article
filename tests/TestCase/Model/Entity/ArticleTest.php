@@ -48,4 +48,9 @@ class ArticleTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /** $this->Article test */
+    public function testArticleInstance() {
+        $this->assertTrue(is_a($this->Article,'\App\Model\Entity\Article'));
+    }
 }
