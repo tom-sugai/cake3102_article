@@ -71,7 +71,7 @@ class ArticlesTableTest extends TestCase
     public function testValidationDefault()
     {
         $this->markTestIncomplete('Not implemented yet.');
-        /** 
+        /**
         // エラーが無いとき
         $article = $this->Articles->newEntity([
             'title' => str_repeat('a', 10),
@@ -79,7 +79,8 @@ class ArticlesTableTest extends TestCase
         ]);
         $expected = [];
         $this->assertSame($expected, $article->getErrors());
-
+        
+        
         // 必須項目が空のとき
         $emptyArticle = $this->Articles->newEntity([
             'title' => '',
@@ -129,9 +130,9 @@ class ArticlesTableTest extends TestCase
     public function testArticlesTableFind() {
         $result = $this->Articles->find('all')->first();
         $this->assertFalse(empty($result));
-        $this->assertTrue(is_a($this->Article,'\App\Model\Entity\Article'));
-        $this->assertEquals($result-id,1);
-        $this->assertStringsStartsWith('Lorem ipsum dolor sit amet', $result->title);
+        $this->assertTrue(is_a($result,'\App\Model\Entity\Article'));
+        $this->assertEquals($result->id,1);
+        $this->assertStringStartsWith('Lorem ipsum dolor sit amet', $result->title);
     }
 
     
