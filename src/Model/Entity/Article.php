@@ -46,24 +46,7 @@ class Article extends Entity
         'tag_string' => true,
     ];
 
-    /** 
     // 仮想/計算フィールドを エンティティーに追加
-    protected function _getTagString()
-    {
-        if (isset($this->_properties['tag_string'])) {
-            return $this->_properties['tag_string'];
-        }
-        if (empty($this->tags)) {
-            return '';
-        }
-        $tags = new Collection($this->tags);
-        $str = $tags->reduce(function ($string, $tag) {
-            return $string . $tag->title . ', ';
-            }, '');
-        return trim($str, ', ');
-    }
-    */
-     
     protected function _getTagString()
     {
         if (isset($this->_properties['tag_string'])){
@@ -73,17 +56,12 @@ class Article extends Entity
         if (empty($this->tags)){
             return '';
         }
-        // for test
-        //return $this->_properties['title']; 
 
-         
         $tags = new Collection($this->tags);
         $str = $tags->reduce(function ($string, $tag){
             return $string . $tag->title . ', ';
         }, '');
-        return trim($str, ', ');
-        
-
+        return trim($str, ', ');   
     }
     
 }
