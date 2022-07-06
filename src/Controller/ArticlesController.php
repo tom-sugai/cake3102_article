@@ -17,10 +17,9 @@ class ArticlesController extends AppController
 
     /**  inspect the php program */
     public function inspect ($id = null) {
-
         $this ->autoLayout = true;
         $this->autoRender = false;
-     
+
         //--------function buildTags---------------------
         function buildTags($table,$tagString)
         {
@@ -56,8 +55,8 @@ class ArticlesController extends AppController
             }
             return $out;
         }
-
-        //--------inspect main start---------------------
+        
+        echo "-------- inspect main start-----------" . "<br/>";
         // make variable $articles : table object
         $articles = $this->Articles;
         // $article : entity object contain Users,Tags,Comments tables
@@ -66,59 +65,54 @@ class ArticlesController extends AppController
             'contain' => ['Users', 'Tags', 'Comments'],
         ]);
         echo "article id : " . $article->id . "<br/>";
-        // debug($article);
-        /** 
-        //confirm datas ------------------------------
-        echo "-------- confirm article->tags" ."<br/>";
-        //debug($article->tags); 
+        //
+        /**
+        echo "-------- confirm article->tags data" . "<br/>"; 
         foreach ($article->tags as $tag){
             echo "tag->title : " . $tag->title . "<br/>";   
         }
         echo "article->tag_string : " . $article->tag_string . "<br/>";
-
-        echo "------- make collection tags from article->tags" . "<br/>";
+        echo "------- make tags collection from article->tags" . "<br/>";
         $tags = new Collection($article->tags);
         //debug($tags);
-        echo "------- tags in this object " . "<br/>";
+        echo "------- eache tag in this object " . "<br/>";
         foreach ($tags as $tag){
             echo "tag : " . $tag->title . "<br/>";
         }
+        //
         echo "------- make tag list separated by ',' " . "<br/>";
         $str = $tags->reduce(function ($string, $tag){
             return $string . $tag->title . ', ';
         }, '');
         echo "tag list : " . $str . "<br/>";
-
+        //
         echo "------- add new tag('sam' and 'tony' and tom) " . "<br/>";
         $new_str_1 = $str . "sam" . ", " . " tony" .  ", " . " fumiko";
         echo "new_str_1 : " . $new_str_1 . "<br/>";
-    
         //------------ create new tags object -----------------------------
         echo "------ check for article->tag_string" . "<br/>";
         echo "article->tag_string : " . $article->tag_string . "<br/>";
-
         echo "------- create new article->tags by buildTags()" . "<br/>";
         $article->tags = buildTags($articles,$new_str_1);
-
+        //
         echo "** confirm article->tags object **" . "<br/>";
         //debug($article->tags);
-        echo "-------- chech for article->tags" . "<br/>"; 
+        echo "-------- check for article->tags" . "<br/>"; 
         foreach ($article->tags as $tag){
             echo "tag->title : " . $tag->title . "<br/>";   
         }
-        
+        // load test data
         $article->tag_string = 'fumiko,tom,junji';
-        //------------ save article ---------------------------------------
+        // save article
         if ($this->Articles->save($article)) {
             echo "------ The article has been saved." . "<br/>";
         } else {
-        echo "The article could not be saved. Please, try again." . "<br/>";
+            echo "The article could not be saved. Please, try again." . "<br/>";
         }
-        //debug($article);    
+        //debug($article);
         */
 
-         
-        // function test for Article->_getTagString
+        echo "function test for Article->_getTagString" ."<br/>";
         // make variable $articles : table object
         $articles = $this->Articles;
         // $article : entity object contain Users,Tags,Comments tables
@@ -127,41 +121,27 @@ class ArticlesController extends AppController
             'contain' => ['Users', 'Tags', 'Comments'],
         ]);
         echo "article id : " . $article->id . "<br/>";
-        //debug($article);
-
-        //$anser = isset($article->_properties['id']);
-        //echo "ans : " . $anser . "<br/>";
-
         $article->tag_string = "fumiko";
-        //$article->tag_string = '';
-        echo "article->tag_string : " . $article->tag_string . "<br/>";
-
-        $ans = isset($article->_properties['title']);
-        echo "ans : " . $ans . "<br/>";
-
+        echo "isset article->tag_string : " . $article->tag_string . "<br/>";
+        //
         if (isset($article->_properties['tag_string'])){
-            //return $article->_properties['tag_string'];
-            echo "1111 : " . $article->id . "<br/>";
+            echo "article->_properties['tag_string'] : " . $article->tag_string . "<br/>";
         } else {
             echo "don't propertied tag_string" . "<br/>";
         }
-
-        if (empty($article->tags)){
-            //return '';
-            echo "2222 : ";
+        //
+        if (!empty($article->tags)){
+            $tags = new Collection($article->tags);
+            //debug($tags);
+            $str = $tags->reduce(function ($string, $tag){
+                    echo "3333 : " . $string . "<br/>";
+                    return $string . $tag->title . ', ';
+                }, '');
+            echo "4444 : " . $str . "<br/>";
+            echo "********* end of inspect method  ***********";
+        } else {
+            echo "article->tags is empty !! ";
         }
-        debug($article->tags);
-        $tags = new Collection($article->tags);
-        debug($tags);
-
-
-        $str = $tags->reduce(function ($string, $tag){
-            echo "3333 : " . $string . "<br/>";
-            return $string . $tag->title . ', ';
-        }, '');
-        echo "4444 : " . $str;
-        
-        echo "********* end of inspect method  ***********";
     }
 
     /**
