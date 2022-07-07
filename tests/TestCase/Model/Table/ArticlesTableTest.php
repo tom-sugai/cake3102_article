@@ -116,8 +116,29 @@ class ArticlesTableTest extends TestCase
         ];
         //debug($moreArticle);
         $this->assertSame($expected, $moreArticle->getErrors());
-        
+    }
 
+    /**
+     * articles 追加
+     */
+    public function testSaveInsert()
+    {
+        $newArticle = $this->Articles->newEntity([
+            'user_id' => 1,
+            'title' => 'CakePHP テスト',
+            'body' => str_repeat('🍺', 10),
+            'tag_string' => 'PHP',
+        ]);
+        $this->Articles->save($newArticle);
+        $article = $this->Articles->get($newArticle->id, [
+            'contain' => ['tags'],
+        ]);
+
+        // スラグ
+        $this->assertSame('CakePHP-tesuto', $article->slug);
+
+        // タグに変換
+        $this->assertSame('PHP', $article->tags[0]->title);
     }
 
     /**
