@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\ArticlesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use \Cake\Collection\Collection;
 
 /**
  * App\Model\Table\ArticlesTable Test Case
