@@ -141,6 +141,22 @@ class ArticlesTableTest extends TestCase
         $this->assertSame('PHP', $article->tags[0]->title);
     }
 
+    public function testSaveUpdate()
+    {
+        $article = $this->Articles->get(1);
+        $this->assertSame('CakePHP3-chutoriaru', $article->slug);
+        $article = $this->Articles->patchEntity($article, [
+            'title' => 'CakePHP3 Tutorial',
+        ]);
+        $this->Articles->save($article);
+
+        $newArticle = $this->Articles->get(1);
+
+        // title が変わってもスラグは変化しない
+        $this->assertSame('CakePHP3 Tutorial', $newArticle->title);
+        $this->assertSame('CakePHP3-chutoriaru', $newArticle->slug);
+    }
+
     /**
      * Test buildRules method
      *
