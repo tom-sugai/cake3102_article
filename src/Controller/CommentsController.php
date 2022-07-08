@@ -12,6 +12,16 @@ use App\Controller\AppController;
  */
 class CommentsController extends AppController
 {
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+        // add および tags アクションは、常にログインしているユーザーに許可されます。
+        if (in_array($action, ['add', 'tags'])) {
+            return true;
+        }
+    }
+
     /**
      * Index method
      *
