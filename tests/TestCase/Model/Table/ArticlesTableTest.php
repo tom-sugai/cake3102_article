@@ -184,14 +184,16 @@ class ArticlesTableTest extends TestCase
             ->find('tagged', ['tags' => []])
             ->contain(['Tags'])
             ->first();
+        //debug($notTaggedArticle);
         $this->assertEmpty($notTaggedArticle->tags);
 
         // タグあり
         $taggedArticle = $this->Articles
-            ->find('tagged', ['tags' => ['PHP']])
+            ->find('tagged', ['tags' => ['CakePHP']])
             ->contain(['Tags'])
             ->first();
-        $tags = new \Cake\Collection\Collection($taggedArticle->tags);
+        //debug($taggedArticle);
+        $tags = new Collection($taggedArticle->tags);
         $this->assertNotEmpty($tags->filter(function($tag) {
             return $tag->title === 'PHP';
         }));
