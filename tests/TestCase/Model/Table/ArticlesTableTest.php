@@ -146,7 +146,7 @@ class ArticlesTableTest extends TestCase
         $article = $this->Articles->get(1);
         $this->assertSame('CakePHP3-chutoriaru', $article->slug);
         $article = $this->Articles->patchEntity($article, [
-            'title' => 'CakePHP3 Tutorial',
+            'title' => 'CakePHP3 Tutorial',   // changed Japanes to English
         ]);
         $this->Articles->save($article);
 
@@ -173,7 +173,7 @@ class ArticlesTableTest extends TestCase
         $this->assertFalse(empty($result));
         $this->assertTrue(is_a($result,'\App\Model\Entity\Article'));
         $this->assertEquals($result->id,1);
-        $this->assertStringStartsWith('Lorem ipsum dolor sit amet', $result->title);
+        $this->assertStringStartsWith('CakePHP3 チュートリアル', $result->title);
     }
 
     
