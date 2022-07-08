@@ -39,9 +39,21 @@ class TagsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'title' => 'Lorem ipsum dolor sit amet',
-                'created' => '2022-04-21 01:22:11',
-                'modified' => '2022-04-21 01:22:11',
+                'title' => 'PHP',
+                'created' => '2017-11-18 12:15:34',
+                'modified' => '2017-11-18 12:15:34'
+            ],
+            [
+                'id' => 2,
+                'title' => 'CakePHP',
+                'created' => '2017-11-18 12:15:34',
+                'modified' => '2017-11-18 12:15:34'
+            ],
+            [
+                'id' => 3,
+                'title' => 'Bakery',
+                'created' => '2017-11-18 12:15:34',
+                'modified' => '2017-11-18 12:15:34'
             ],
         ];
         parent::init();
