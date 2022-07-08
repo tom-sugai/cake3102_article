@@ -176,6 +176,26 @@ class ArticlesTableTest extends TestCase
         $this->assertStringStartsWith('CakePHP3 チュートリアル', $result->title);
     }
 
+    public function testFindTagged()
+    {
+        // タグなし
+        $notTaggedArticle = $this->Articles
+            ->find('tagged', ['tags' => []])
+            ->contain(['Tags'])
+            ->first();
+        $this->assertEmpty($notTaggedArticle->tags);
+
+        // タグあり
+        $taggedArticle = $this->Articles
+            ->find('tagged', ['tags' => ['PHP']])
+            ->contain(['Tags'])
+            ->first();
+        $tags = new \Cake\Collection\Collection($taggedArticle->tags);
+        $this->assertNotEmpty($tags->filter(function($tag) {
+            return $tag->title === 'PHP';
+        }));
+    }
+
     
     
 }
