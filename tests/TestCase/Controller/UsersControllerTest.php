@@ -38,7 +38,7 @@ class UsersControllerTest extends TestCase
         $this->enableCsrfToken();
         $this->enableSecurityToken();
         $this->post('/users/login', [
-            'email' => 'myname@example.com',
+            'email' => 'tom.sugai@example.com',
             'password' => 'wrongpassword',
         ]);
         $this->assertResponseOk();
@@ -53,10 +53,10 @@ class UsersControllerTest extends TestCase
         $this->enableCsrfToken();
         $this->enableSecurityToken();
         $this->post('/users/login?redirect=%2Farticles%2Fadd', [
-            'email' => 'myname@example.com',
-            'password' => 'password',
+            'email' => 'tom.sugai@example.com',
+            'password' => 'ts0521ts',
         ]);
-        $this->assertRedirect('/articles/add');
+        $this->assertRedirect('/articles');
         $this->assertSession(1, 'Auth.User.id');
     }
 
