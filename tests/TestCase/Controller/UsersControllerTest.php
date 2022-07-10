@@ -1,14 +1,11 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\UsersController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
  * App\Controller\UsersController Test Case
- *
- * @uses \App\Controller\UsersController
  */
 class UsersControllerTest extends TestCase
 {
@@ -21,56 +18,58 @@ class UsersControllerTest extends TestCase
      */
     public $fixtures = [
         'app.Users',
-        'app.Articles',
     ];
 
     /**
-     * Test index method
-     *
-     * @return void
+     * ログインページが表示される
      */
-    public function testIndex()
+    public function testLoginShow()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users/login');
+        $this->assertResponseOk();
+        $this->assertResponseContains('ログイン');
     }
 
     /**
-     * Test view method
-     *
-     * @return void
+     * ログイン失敗
      */
-    public function testView()
+    public function testLoginFailed()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/users/login', [
+            'email' => 'myname@example.com',
+            'password' => 'wrongpassword',
+        ]);
+        $this->assertResponseOk();
+        $this->assertResponseContains('ユーザー名またはパスワードが不正です。');
     }
 
     /**
-     * Test add method
-     *
-     * @return void
+     * ログイン成功
      */
-    public function testAdd()
+    public function testLoginSucceed()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/users/login?redirect=%2Farticles%2Fadd', [
+            'email' => 'myname@example.com',
+            'password' => 'password',
+        ]);
+        $this->assertRedirect('/articles/add');
+        $this->assertSession(1, 'Auth.User.id');
     }
 
     /**
-     * Test edit method
-     *
-     * @return void
+     * ログアウト
      */
-    public function testEdit()
+    public function testLogout()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+        $this->session(['Auth.User.id' => 1]);
 
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users/logout');
+
+        $this->assertSession([], 'Auth');
+        $this->assertRedirect('/users/login');
     }
 }
