@@ -2,18 +2,13 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\ArticlesController;
-use Cake\TestSuite\IntegrationTestTrait;
-use Cake\TestSuite\TestCase;
+use Cake\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\ArticlesController Test Case
- *
- * @uses \App\Controller\ArticlesController
  */
-class ArticlesControllerTest extends TestCase
+class ArticlesControllerTest extends IntegrationTestCase
 {
-    use IntegrationTestTrait;
-
     /**
      * Fixtures
      *
@@ -21,20 +16,16 @@ class ArticlesControllerTest extends TestCase
      */
     public $fixtures = [
         'app.Articles',
-        'app.Users',
-        'app.Comments',
         'app.Tags',
         'app.ArticlesTags',
+        'app.Users'
     ];
-
-    /**
-     * Test index method
-     *
-     * @return void
-     */
-    public function testIndex()
+    public function test記事一覧を表示()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/articles');
+        $this->assertResponseOk();
+        $this->assertResponseContains('CakePHP3 チュートリアル');
+        $this->assertResponseContains('Happy new year');
     }
 
     /**
@@ -42,9 +33,23 @@ class ArticlesControllerTest extends TestCase
      *
      * @return void
      */
-    public function testView()
+    //public function testView()
+    public function test記事詳細ページを表示()
     {
         $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/articles/view/CakePHP3-chutoriaru');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('CakePHP3 チュートリアル'); // title
+        $this->assertResponseContains('このチュートリアルは簡単な ' .
+            'CMS アプリケーションを作ります。'); // body
+    }
+
+    public function test記事詳細ページが存在しない()
+    {
+        $this->get('/articles/view/Happy-birthday');
+
+        $this->assertResponseCode(500);  // origin : 404
     }
 
     /**
@@ -56,7 +61,6 @@ class ArticlesControllerTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-
     /**
      * Test edit method
      *
@@ -66,13 +70,21 @@ class ArticlesControllerTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-
     /**
      * Test delete method
      *
      * @return void
      */
     public function testDelete()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    /**
+     * Test tags method
+     *
+     * @return void
+     */
+    public function testTags()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
