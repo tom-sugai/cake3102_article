@@ -72,7 +72,8 @@ class ArticlesController extends AppController
      */
     public function add()
     {
-        $this ->autoLayout = true;
+        //$this ->autoLayout = true;
+        $this->viewBuilder()->enableAutoLayout();
         $this->autoRender = true;
 
         $article = $this->Articles->newEntity();
