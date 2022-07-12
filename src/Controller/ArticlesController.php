@@ -79,7 +79,7 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
-            $this->Flash->success($article->tag_string);
+            //$this->Flash->success($article->tag_string);
 
             // 変更: セッションから user_id をセット
             $article->user_id = $this->Auth->user('id');
@@ -109,7 +109,10 @@ class ArticlesController extends AppController
         $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
         // save process
         if ($this->request->is(['post', 'put'])) {
-            $article = $this->Articles->patchEntity($article, $this->request->getData());
+            $article = $this->Articles->patchEntity($article, $this->request->getData(),[
+                // 追加: user_id の更新を無効化
+                'accessibleFields' => ['user_id' => false]   
+            ]);
             
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('edit : The article has been saved.'));
