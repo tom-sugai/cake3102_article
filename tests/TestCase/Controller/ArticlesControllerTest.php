@@ -57,9 +57,13 @@ class ArticlesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testAdd()
+    public function test記事追加ページにアクセスできる()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->session(['Auth.User.id' => 1]);
+        $this->get('/articles/add');
+
+        $this->assertResponseOk();
+        //$this->assertResponseContains('記事の追加');
     }
     /**
      * Test edit method
