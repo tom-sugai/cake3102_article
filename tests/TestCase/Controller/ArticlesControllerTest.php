@@ -76,7 +76,7 @@ class ArticlesControllerTest extends IntegrationTestCase
             'body' => 'クリスマスプレゼントとして買った',
             'tag_string' => 'game,2017',
         ]);
-        //$this->assertSession('Your article has been saved.', 'Flash.flash.0.message');
+        $this->assertSession('The article has been saved.', 'Flash.flash.0.message');
         $this->assertRedirect('/articles');
 
         $this->get('/articles');
