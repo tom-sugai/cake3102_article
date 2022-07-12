@@ -69,20 +69,37 @@ class ArticlesControllerTest extends IntegrationTestCase
     public function test記事が追加されると記事一覧にリダイレクトする()
     {
         $this->enableCsrfToken();
-        //$this->enableSecurityToken();
+        $this->enableSecurityToken();
         $this->session(['Auth.User.id' => 1]);
         $this->post('/articles/add', [
             'title' => 'Nintendo Switch を購入！',
             'body' => 'クリスマスプレゼントとして買った',
             'tag_string' => 'game,2017',
         ]);
-
         //$this->assertSession('Your article has been saved.', 'Flash.flash.0.message');
         $this->assertRedirect('/articles');
 
         $this->get('/articles');
         $this->assertResponseContains('Nintendo Switch を購入！');
     }
+
+    public function testバリデーションエラーだと追加できずエラーメッセージが表示される()
+    {
+        $this->session(['Auth.User.id' => 1]);
+        $this->post('/articles/add', [
+            'title' => 'Nintendo Switch を購入！',
+            'body' => '',
+            'tag_string' => '',
+        ]);
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('Unable to add your article.');
+
+        $this->get('/articles');
+        $this->assertResponseNotContains('Nintendo Switch を購入！');
+    }
+
+
 
     /**
      * Test edit method
