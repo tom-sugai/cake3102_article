@@ -28,6 +28,7 @@ class ArticlesTableTest extends TestCase
         'app.Users',
         'app.Comments',
         'app.Tags',
+        'app.ArticlesTags'
     ];
 
     /**
@@ -90,7 +91,7 @@ class ArticlesTableTest extends TestCase
         //debug($emptyArticle);
         $expected = [
             'title' => ['_empty' => 'This field cannot be left empty'],
-            //'body' => ['_empty' => 'This field cannot be left empty'],
+            'body' => ['_empty' => 'This field cannot be left empty'],
         ];
         $this->assertSame($expected, $emptyArticle->getErrors());
     
