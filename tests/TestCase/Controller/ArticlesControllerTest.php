@@ -18,11 +18,13 @@ class ArticlesControllerTest extends IntegrationTestCase
         'app.Articles',
         'app.Tags',
         'app.ArticlesTags',
-        'app.Users'
+        'app.Users',
+        'app.Comments'
     ];
-    public function test記事一覧を表示()
+
+    public function testIndex()
     {
-        $this->get('/articles');
+        $this->get('/articles/');
         $this->assertResponseOk();
         $this->assertResponseContains('CakePHP3 チュートリアル');
         $this->assertResponseContains('Happy new year');
@@ -33,10 +35,9 @@ class ArticlesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    //public function testView()
-    public function test記事詳細ページを表示()
+
+    public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
         $this->get('/articles/view/CakePHP3-chutoriaru');
 
         $this->assertResponseOk();
@@ -45,11 +46,10 @@ class ArticlesControllerTest extends IntegrationTestCase
             'CMS アプリケーションを作ります。'); // body
     }
 
-    public function test記事詳細ページが存在しない()
+    public function testViewNotFound()
     {
         $this->get('/articles/view/Happy-birthday');
-
-        $this->assertResponseCode(500);  // origin : 404
+        $this->assertResponseCode(404);
     }
 
     /**
@@ -57,16 +57,16 @@ class ArticlesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function test記事追加ページにアクセスできる()
+    public function testAddPage()
     {
         $this->session(['Auth.User.id' => 1]);
         $this->get('/articles/add');
 
         $this->assertResponseOk();
-        //$this->assertResponseContains('記事の追加');
+        $this->assertResponseContains('Articles');
     }
 
-    public function test記事が追加されると記事一覧にリダイレクトする()
+    public function testAddRedirectIndex()
     {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
@@ -83,7 +83,7 @@ class ArticlesControllerTest extends IntegrationTestCase
         $this->assertResponseContains('Nintendo Switch を購入！');
     }
 
-    public function testバリデーションエラーだと追加できずエラーメッセージが表示される()
+    public function testAddValidationError()
     {
         $this->enableCsrfToken();
         $this->session(['Auth.User.id' => 1]);
@@ -93,25 +93,31 @@ class ArticlesControllerTest extends IntegrationTestCase
             'tag_string' => '',
         ]);
 
-        //$this->assertResponseOk();
-        $this->assertResponseCode(302);
+        $this->assertResponseOk();
+        $this->assertResponseCode(200);
         $this->assertResponseContains('The article could not be saved.');
 
         $this->get('/articles');
         $this->assertResponseNotContains('Nintendo Switch を購入！');
     }
 
-    public function test記事編集ページにアクセスできる()
+        /**
+     * Test edit method
+     *
+     * @return void
+     */
+    public function testEdit()
     {
         $this->session(['Auth.User.id' => 1]);
         $this->get('/articles/edit/CakePHP3-chutoriaru');
 
-        $this->assertResponseContains('記事の編集');
+        $this->assertResponseContains('Edit Article');
         $this->assertResponseContains('CakePHP3 チュートリアル');
     }
 
-    public function test記事を更新し記事一覧にリダイレクトする()
+    public function testEditRedirectIndex()
     {
+        $this->enableCsrfToken();
         $this->session(['Auth.User.id' => 1]);
         $this->post('/articles/edit/CakePHP3-chutoriaru', [
             // タイトルを変更する
@@ -120,14 +126,15 @@ class ArticlesControllerTest extends IntegrationTestCase
             'tag_string' => 'PHP,CakePHP',
         ]);
         $this->assertRedirect('/articles');
-        $this->assertSession('Your article has been updated.', 'Flash.flash.0.message');
+        $this->assertSession('edit : The article has been saved.', 'Flash.flash.0.message');
 
         $this->get('/articles');
         $this->assertResponseContains('1時間で分かるCakePHP3 チュートリアル');
     }
 
-    public function testバリデーションエラーだと更新できずエラーメッセージが表示される()
+    public function testEditValidationError()
     {
+        $this->enableCsrfToken();
         $this->session(['Auth.User.id' => 1]);
         $this->post('/articles/edit/CakePHP3-chutoriaru', [
             // タイトルを変更する
@@ -135,21 +142,13 @@ class ArticlesControllerTest extends IntegrationTestCase
             'body' => '',
         ]);
         $this->assertResponseOk();
-        $this->assertResponseContains('Unable to update your article.');
+        $this->assertResponseContains('The article could not be saved.');
 
         $this->get('/articles');
         $this->assertResponseNotContains('1時間で分かるCakePHP3 チュートリアル');
     }
 
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+
     /**
      * Test delete method
      *
