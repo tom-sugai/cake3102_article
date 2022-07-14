@@ -90,7 +90,8 @@ class ArticlesTable extends Table
         $validator
             ->scalar('body')
             ->minLength('body',10)
-            ->allowEmptyString('body');
+            ->notEmptyString('body');
+            //->allowEmptyString('body');
 
         $validator
             ->boolean('published')
