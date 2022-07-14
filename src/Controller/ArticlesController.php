@@ -48,8 +48,8 @@ class ArticlesController extends AppController
         ];
 
         $articles = $this->paginate($this->Articles);
-
         $this->set(compact('articles'));
+        $this->set('loginname', $this->Auth->user('email'));
     }
 
     /**
