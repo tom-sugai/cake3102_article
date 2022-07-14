@@ -80,7 +80,6 @@ class ArticlesController extends AppController
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             //$this->Flash->success($article->tag_string);
-
             // 変更: セッションから user_id をセット
             $article->user_id = $this->Auth->user('id');
 
