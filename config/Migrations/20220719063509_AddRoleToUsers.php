@@ -16,7 +16,7 @@ class AddRoleToUsers extends AbstractMigration
         $table->addColumn('role', 'string', [
             'default' => null,
             'limit' => 50,
-            'null' => false,
+            'null' => true,
         ]);
         $table->update();
     }
