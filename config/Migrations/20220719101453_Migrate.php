@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class AddRoleToUsers extends AbstractMigration
+class Migrate extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,12 +12,5 @@ class AddRoleToUsers extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('users');
-        $table->addColumn('role', 'string', [
-            'default' => null,
-            'limit' => 50,
-            'null' => true,
-        ]);
-        $table->update();
     }
 }
