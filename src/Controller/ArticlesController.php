@@ -18,7 +18,7 @@ class ArticlesController extends AppController
     {
         $action = $this->request->getParam('action');
         // add および tags アクションは、常にログインしているユーザーに許可されます。
-        if (in_array($action, ['add', 'tags'])) {
+        if (in_array($action, ['add', 'tags','edit'])) {
             return true;
         }
 
@@ -34,6 +34,33 @@ class ArticlesController extends AppController
         return $article->user_id === $user['id'];
     }
 
+    public function top()
+    {
+        $this ->autoLayout = true;
+        $this->autoRender = false;
+
+        echo "top page !! " . "<br/>";
+        $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
+        //debug($articles);
+        foreach($articles as $article){
+            //debug($article);
+            echo $article->id . "<br/>";
+            echo $article->title . "<br/>";
+            echo $article->body . "<br/>";
+            echo $article->user->email . "<br/>";
+            foreach($article->tags as $tag){
+                echo $tag->title . ", "; 
+            }
+            echo "<br/>";
+            echo $article->created . "<br/>";
+            echo $article->modified . "<br/>";
+            foreach($article->comments as $comment){
+                echo $comment->id . " : " . $comment->body . "<br/>";
+            }
+            echo "----------" . "<br/>";
+        }
+
+    }
     /**
      * Index method
      *
