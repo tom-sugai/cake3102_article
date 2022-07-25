@@ -37,9 +37,9 @@ class ArticlesController extends AppController
     public function top()
     {
         $this ->autoLayout = true;
-        $this->autoRender = false;
+        $this->autoRender = true;
 
-        //$this->viewBuilder()->setLayout('fmlayout-4');
+        $this->viewBuilder()->setLayout('articlelayout-1');
         //$this->Flash->set('---- Flash test from /fumiko4() ----');
         //$this->set('msg',"fumichan !!");
 
