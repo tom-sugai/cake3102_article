@@ -39,34 +39,15 @@ class ArticlesController extends AppController
         $this ->autoLayout = true;
         $this->autoRender = true;
 
-        $this->viewBuilder()->setLayout('articlelayout-1');
+        $this->viewBuilder()->setLayout('articleLayout-1');
         //$this->Flash->set('---- Flash test from /fumiko4() ----');
         //$this->set('msg',"fumichan !!");
 
         echo "top page !! " . "<br/>";
         $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
         //debug($articles);
-        $this->set('articles',$articles);
+        $this->set('articles', $articles);
 
-        /** 
-        foreach($articles as $article){
-            //debug($article);
-            echo $article->id . "<br/>";
-            echo $article->title . "<br/>";
-            echo $article->body . "<br/>";
-            echo $article->user->email . "<br/>";
-            foreach($article->tags as $tag){
-                echo $tag->title . ", "; 
-            }
-            echo "<br/>";
-            echo $article->created . "<br/>";
-            echo $article->modified . "<br/>";
-            foreach($article->comments as $comment){
-                echo $comment->id . " : " . $comment->body . "<br/>";
-            }
-            echo "----------" . "<br/>";
-        }
-        */
     }
 
     /**
