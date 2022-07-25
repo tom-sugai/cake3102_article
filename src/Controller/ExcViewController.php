@@ -56,7 +56,7 @@ class ExcViewController extends AppController{
         return $article->user_id === $user['id'];
     }
     */
-    
+
     public function setCookie() {
         if ($this->request->isPost()) {
             if (!empty($this->request->data['mycookie'])) {
@@ -95,7 +95,7 @@ class ExcViewController extends AppController{
         $this->autoRender = true;
 
         $this->viewBuilder()->setLayout('fmlayout-4');
-        $this->Flash->set('---- Flash test from /fumiko4() ----');
+        //$this->Flash->set('---- Flash test from /fumiko4() ----');
         $this->set('msg',"fumichan !!");  
     }
 
