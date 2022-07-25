@@ -34,7 +34,7 @@ echo $this->fetch('script');
     </div>
 
     <!-- ここがビューで表示されるようにしたい場所です -->
-    <!-- <?= $this->Flash->render() ?> -->
+    <?= $this->Flash->render() ?>
     <div class="content clearfix">
         <?= $this->fetch('content') ?>
     </div>

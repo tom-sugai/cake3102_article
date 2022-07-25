@@ -46,6 +46,9 @@ class ArticlesController extends AppController
         echo "top page !! " . "<br/>";
         $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
         //debug($articles);
+        $this->set('articles',$articles);
+
+        /** 
         foreach($articles as $article){
             //debug($article);
             echo $article->id . "<br/>";
@@ -63,8 +66,9 @@ class ArticlesController extends AppController
             }
             echo "----------" . "<br/>";
         }
-
+        */
     }
+
     /**
      * Index method
      *
