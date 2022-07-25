@@ -43,10 +43,12 @@ class ArticlesController extends AppController
         //$this->Flash->set('---- Flash test from /fumiko4() ----');
         //$this->set('msg',"fumichan !!");
 
-        echo "top page !! " . "<br/>";
+        //echo "top page !! " . "<br/>";
         $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
         //debug($articles);
         $this->set('articles', $articles);
+        $headertext = "Articles Application";
+        $this->set('headertext',$headertext);
 
     }
 
