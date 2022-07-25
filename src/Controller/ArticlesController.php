@@ -39,6 +39,10 @@ class ArticlesController extends AppController
         $this ->autoLayout = true;
         $this->autoRender = false;
 
+        //$this->viewBuilder()->setLayout('fmlayout-4');
+        //$this->Flash->set('---- Flash test from /fumiko4() ----');
+        //$this->set('msg',"fumichan !!");
+
         echo "top page !! " . "<br/>";
         $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
         //debug($articles);
