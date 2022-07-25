@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    justify-content: space-between; /* 左右均等分布 */
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+    align-items: center; /* 上下中央揃え */
+}
+
+ul li {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+  
+.animal {
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: stretch;
+
+  }
+  
+  .f-item01 { order: 1; flex-basis: 33.3% }
+  .f-item02 { order: 2; flex-basis: 33.3% }
+  .f-item03 { order: 3; flex-basis: 33.3% }
+  .f-item04 { order: 4; flex-basis: 33.3% }
+  .f-item05 { order: 5; flex-basis: 33.3% }
+  .f-item06 { order: 6; flex-basis: 33.3% }

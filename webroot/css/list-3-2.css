@@ -1,0 +1,60 @@
+h1 {
+    height: 40px;
+    font-size: bigger;
+    border: 3px dotted;
+    text-align: center;
+}
+
+h2.header1 
+{
+    background-color: #000000;
+    color: #ffffff;
+}
+
+h2.header2 {
+    border: 1px solid;
+}
+
+div#msg {
+    border: 1px solid;
+    text-align: center;
+    height: 20px;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+div.body {
+    margin-left: 50px;
+}
+
+div.line {
+    border: 1px dotted;
+}
+
+ol li {
+    list-style-type: decimal;
+}
+
+div.body ol li {
+    list-style-type: lower-alpha;
+}
+
+a:link {
+    font-size: 14px;
+}
+
+a:visited {
+    border: 2px;
+    font-size:20px;
+}
+
+div.type1 {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+div.type2 {
+    background-color: #ffffff;
+    color: #000000;
+}

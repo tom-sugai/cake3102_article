@@ -1,0 +1,44 @@
+body
+{ 
+    position: relative;
+    width: 100%;
+    height:fit-content;
+    border: 2px dotted;
+
+}
+div#header { background-color:gold; margin-bottom:4px; }
+
+div#footer { margin-top: 4px; background-color:gold; clear:both; }
+
+h1      { display:block; text-align: center; 
+          background-color: #89c4f5; }
+
+h2      { display:block; background-color: #116c83; }
+
+p       { background-color: #f0bcbc; color: #000000; }
+
+p.text-6 { display:block; }
+
+div     { background-color: #ffffff; color: #ec0e0e; }
+
+.content { display:flex; 
+            flex-flow: row wrap;
+            align-items: flex-start;
+            justify-content:space-around; /* 左右均等分布 */
+            margin: 2px 2px; border:1px solid coral; }
+
+.content > img { flex:1; margin:0 0; border: 1px solid crimson; }
+
+.sidebar { flex:1; height:fit-content; border: 1px solid; margin-right:4px; }
+
+.actions { flex:1; height:fit-content; border:2px solid crimson; }
+
+span    { font-weight: bold }
+
+.elem1  { display: block; position:relative; top: 0px;
+          text-align: left; margin-top: 10px; 
+          background-color: #a0ff7a; color: #000000; font-size: 1.2em;
+        }
+
+.elem2  { display:block; text-align: left;
+          background-color: #7aafff; color: #131212; font-size: 1.2em; }
