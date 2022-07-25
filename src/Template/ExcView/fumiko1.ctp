@@ -12,15 +12,15 @@
 <?php 
     $this->Breadcrumbs->add(
         'fumiko2',
-        ['controller' => 'exc-orm', 'action' => 'fumiko2']
+        ['controller' => 'exc-view', 'action' => 'fumiko2']
     );
     $this->Breadcrumbs->add(
         'fumiko3',
-        ['controller' => 'exc-orm', 'action' => 'fumiko3']
+        ['controller' => 'exc-view', 'action' => 'fumiko3']
     );
     $this->Breadcrumbs->add(
         'fumiko4',
-        ['controller' => 'exc-orm', 'action' => 'fumiko4']
+        ['controller' => 'exc-view', 'action' => 'fumiko4']
     );
     echo $this->Breadcrumbs->render(
         ['class' => 'breadcrumbs-trail'],
