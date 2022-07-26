@@ -19,21 +19,22 @@ echo $this->fetch('script');
 ?>
 </head>
 <body>
+
+        <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
+        <header>
+            <?= $this->element('headerbox'); ?>  
+        </header>
+
+        <!-- ここがビューで表示されるようにしたい場所です -->
+        <article>
+            <?= $this->fetch('content') ?>
+        </article>
+
+        <!-- 表示される各ページにフッターを追加します -->
+        <footer>
+            <?= $this->element('footerbox'); ?>
+        </footer>
     
-    <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
-    <div id="header">
-        <?= $this->element('headerbox'); ?>  
-    </div>
-
-    <!-- ここがビューで表示されるようにしたい場所です -->
-    <div class="content clearfix">
-        <?= $this->fetch('content') ?>
-    </div>
-
-    <!-- 表示される各ページにフッターを追加します -->
-    <div id="footer">
-        <?= $this->element('footerbox'); ?>
-    </div>
  
 </body>
 </html>
