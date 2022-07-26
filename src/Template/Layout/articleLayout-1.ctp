@@ -30,6 +30,10 @@ echo $this->fetch('script');
             <?= $this->fetch('content') ?>
         </article>
 
+        <aside>
+            side bar menu
+        </aside>
+
         <!-- 表示される各ページにフッターを追加します -->
         <footer>
             <?= $this->element('footerbox'); ?>
