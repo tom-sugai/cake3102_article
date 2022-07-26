@@ -47,8 +47,11 @@ class ArticlesController extends AppController
         $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
         //debug($articles);
         $this->set('articles', $articles);
-        $headertext = "Articles Application";
+        $headertext = "headertext : Articles Application";
         $this->set('headertext',$headertext);
+        $footertext = "footertext : end Articles Application";
+        $this->set('footertext', $footertext);
+
 
     }
 
