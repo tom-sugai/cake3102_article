@@ -1,6 +1,3 @@
-<div class="articles index large-9 medium-8 columns content">
-    <h3><?= __('Articles') ?></h3>
-    <table>    
         <?php foreach ($articles as $article): ?>
             <?= $article->id . "<br/>" ?>
             <?= $article->title . "<br/>" ?>
@@ -16,6 +13,4 @@
                 <?= $comment->id . " : " . $comment->body . "<br/>" ?>
             <?php endforeach ?>
             <?= "---------" . "<br/>" ?>
-        <?php endforeach; ?>
-    </table>
-</div>   
+        <?php endforeach; ?>  
