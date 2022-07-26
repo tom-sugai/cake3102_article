@@ -22,19 +22,10 @@ echo $this->fetch('script');
     <h1><?= h($this->fetch('h1')) ?></h1>
     <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
     <div id="header">
-        <p class="menubtn"><img src="/cake_cms/img/piece.png" alt="menu"></p>
-        <nav>
-            <ul>
-                <li>アバウト</li>
-                <li>メイン</li>
-                <li>ポリシー</li>
-            </ul>  
-        </nav>
         <?= $this->element('headerbox'); ?>  
     </div>
 
     <!-- ここがビューで表示されるようにしたい場所です -->
-    <?= $this->Flash->render() ?>
     <div class="content clearfix">
         <?= $this->fetch('content') ?>
     </div>
