@@ -1,7 +1,10 @@
 <?php
 $this->extend('/Common/fumicom');
 $this->assign('title', 'fumiko4');
-?>
+$this->start('sidebar'); ?>
+    <?= $this->element('sidebar/recent_topics'); ?>
+    <?= $this->element('sidebar/recent_comments'); ?>
+<?php $this->end(); ?>
 <?php $this->set('headertext', '----- header block'); ?>
 <?php $this->set('footertext', '----- footer block'); ?>    
 
