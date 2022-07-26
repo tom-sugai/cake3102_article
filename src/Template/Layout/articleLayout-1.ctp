@@ -20,25 +20,31 @@ echo $this->fetch('script');
 </head>
 <body>
 
-        <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
-        <header>
-            <?= $this->element('headerbox'); ?>  
-        </header>
+    <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
+    <div>
+        <?php echo $this->Html->image("fumiko.jpg",['width' => '200', 'height' => '260']); ?>
+    </div>    
+    <header>
+        <?= $this->element('headerbox'); ?>  
+    </header>
 
-        <!-- ここがビューで表示されるようにしたい場所です -->
+    <!-- ここがビューで表示されるようにしたい場所です -->
+    <div>
         <article>
             <?= $this->fetch('content') ?>
         </article>
-
+    </div>
+    <div>
         <aside>
             side bar menu
         </aside>
-
+    </div>
+    <div>
         <!-- 表示される各ページにフッターを追加します -->
         <footer>
             <?= $this->element('footerbox'); ?>
         </footer>
-    
+    </div>
  
 </body>
 </html>

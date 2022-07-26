@@ -1,4 +1,2 @@
-<?php
-    echo $headertext . "<br/>";
-?>
-<img src="fumiko.jpg" alt="">
+<?php echo $headertext . "<br/>"; ?>
+    
