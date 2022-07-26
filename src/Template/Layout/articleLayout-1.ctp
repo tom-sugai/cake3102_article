@@ -19,7 +19,7 @@ echo $this->fetch('script');
 ?>
 </head>
 <body>
-    <h1><?= h($this->fetch('h1')) ?></h1>
+    
     <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
     <div id="header">
         <?= $this->element('headerbox'); ?>  
