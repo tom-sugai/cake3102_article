@@ -8,7 +8,7 @@
 <?= $this->Html->meta('icon') ?>
 <?= $this->Html->css('base.css') ?>
 <?= $this->Html->css('style.css') ?>
-
+<?= $this->Html->css('article-top.css') ?>
 <?= $this->Html->css('hbg-menu.css') ?>
 <?= $this->Html->script('jquery-3.6.0.min.js') ?>
 <?= $this->Html->script('hbg-menu.js') ?>
