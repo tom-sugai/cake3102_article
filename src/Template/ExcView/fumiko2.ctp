@@ -9,5 +9,8 @@
 
         <?php $this->set('headertext', '----- header block'); ?>
         <?php $this->set('footertext', '----- footer block'); ?>    
-
+    <!-- 以下の記述は　/common/xxxx.ctp の中の　 <?= $this->fetch('content') ?>　でcontentに取り込まれる -->
         <?php echo $this->Html->image("fumiko.jpg",['width' => '200', 'height' => '260']); ?>
+        <div>
+            <h3>aaaaaaaaaaaaaaaaaa</h3>
+        </div>
