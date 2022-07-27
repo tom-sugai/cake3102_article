@@ -19,9 +19,10 @@ p       { background-color: #f0bcbc; color: #000000; }
 
 p.text-6 { display:block; }
 
-div     { background-color: #ffffff; color: #ec0e0e; }
+div     { background-color: #ffffff; color: #ec0e0e; 
+          border: solid 4px #000000}
 
-.content { display:flex; 
+.container { display:flex; 
             flex-flow: row wrap;
             align-items: flex-start;
             justify-content:space-around; /* 左右均等分布 */
