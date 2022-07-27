@@ -21,9 +21,6 @@ echo $this->fetch('script');
 <body>
 
     <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
-    <div>
-        <?php echo $this->Html->image("fumiko.jpg",['width' => '200', 'height' => '260']); ?>
-    </div>    
     <header>
         <?= $this->element('headerbox'); ?>  
     </header>
