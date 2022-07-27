@@ -20,7 +20,7 @@ p       { background-color: #f0bcbc; color: #000000; }
 p.text-6 { display:block; }
 
 div     { background-color: #ffffff; color: #ec0e0e; 
-          border: solid 4px #000000}
+          border: solid 2px #000000}
 
 .container { display:flex; 
             flex-flow: row wrap;
@@ -28,11 +28,11 @@ div     { background-color: #ffffff; color: #ec0e0e;
             justify-content:space-around; /* 左右均等分布 */
             margin: 2px 2px; border:1px solid coral; }
 
-.content > img { flex:1; margin:0 0; border: 1px solid crimson; }
+.container > img { flex:1; margin:0 0; border: 1px solid crimson; }
 
-.sidebar { flex:1; height:fit-content; border: 1px solid; margin-right:4px; }
+.sidebar { flex:1; height:fit-content; border: 2px solid #000000; margin-right:4px; }
 
-.actions { flex:1; height:fit-content; border:2px solid crimson; }
+.actions { flex:1; height:fit-content; border: 2px solid crimson; }
 
 span    { font-weight: bold }
 
