@@ -16,19 +16,17 @@
    
 <!-- 以下は　Common の　fetch('content')　で取り込まれる部分 -->
     <?php foreach ($articles as $article): ?>
-    <div>
-        <?= $article->id . "<br/>" ?>
-        <?= $article->title . "<br/>" ?>
-        <?= $article->body . "<br/>" ?>
-        <?= $article->user->email . "<br/>" ?>
+    <div class="article">
+        <?= "No." . $article->id . " created : " . $article->created . " modified : " . $article->modified . "<br/>" ?>
+        <?= "Author : " . $article->user->email . "<br/>" ?>
+        <?= "tile : " . $article->title . "<br/>" ?>
+        <?= "body : " . $article->body . "<br/>" ?>
         <?php foreach($article->tags as $tag): ?>
-            <?= $tag->title . ", " ?> 
+            <?= "Tag : " . $tag->title . ", " ?> 
         <?php endforeach ?>
         <?= "<br/>" ?>
-        <?= $article->created . "<br/>" ?>
-        <?= $article->modified . "<br/>" ?>
         <?php foreach($article->comments as $comment): ?>
-            <?= $comment->id . " : " . $comment->body . "<br/>" ?>
+            <?= "Comment ; " . $comment->id . " : " . $comment->body . "<br/>" ?>
         <?php endforeach ?>
-        </div>
+    </div>
     <?php endforeach; ?>  
