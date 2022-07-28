@@ -2,7 +2,7 @@
 <div class="sidebar">
     <?= $this->fetch('sidebar') ?>
 </div>
-<div class="cotainer">
+<div class="container">
     <?= $this->fetch('content') ?>
 </div>
 <div class="actions">
