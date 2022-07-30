@@ -43,16 +43,28 @@ class ArticlesController extends AppController
         //$this->Flash->set('---- Flash test from /fumiko4() ----');
         //$this->set('msg',"fumichan !!");
 
-        //echo "top page !! " . "<br/>";
-        $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
-        //debug($articles);
-        $this->set('articles', $articles);
         $headertext = "headertext : Articles Application";
         $this->set('headertext',$headertext);
         $footertext = "footertext : end Articles Application";
         $this->set('footertext', $footertext);
         $this->set('loginname', $this->Auth->user('email'));
+        //echo "top page !! " . "<br/>";
 
+        /** 
+        $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
+        //debug($articles);
+        $this->set('articles', $articles);
+        */
+
+        $this->paginate = [
+            'contain' => ['Users','Tags', 'Comments'],
+            'limit' => 10,
+            'order' => ['Articles.id' => 'asc']
+        ];
+
+        $articles = $this->paginate($this->Articles);
+        $this->set(compact('articles'));
+        $this->set('loginname', $this->Auth->user('email'));
 
     }
 
@@ -65,7 +77,7 @@ class ArticlesController extends AppController
     {
         $this->paginate = [
             'contain' => ['Users'],
-            'limit' => 10,
+            'limit' => 5,
             'order' => ['Articles.id' => 'asc']
         ];
 
