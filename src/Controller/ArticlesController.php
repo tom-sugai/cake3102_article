@@ -51,6 +51,7 @@ class ArticlesController extends AppController
         $this->set('headertext',$headertext);
         $footertext = "footertext : end Articles Application";
         $this->set('footertext', $footertext);
+        $this->set('loginname', $this->Auth->user('email'));
 
 
     }

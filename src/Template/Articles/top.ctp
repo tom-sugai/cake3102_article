@@ -5,6 +5,7 @@
     //------->sidebar section -----------
     $this->extend('/Common/articlecom');
     $this->start('sidebar'); ?>
+        <?= $this->element('sidebar/login_name'); ?>
         <?= $this->element('sidebar/recent_topics'); ?>
         <?= $this->element('sidebar/recent_comments'); ?>
     <?php $this->end(); ?>

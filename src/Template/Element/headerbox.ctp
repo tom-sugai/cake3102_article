@@ -1,2 +1,5 @@
-<?php echo $headertext . "<br/>"; ?>
+<?php 
+    $headertext = "This is header for Articles App.";
+    echo $headertext . "<br/>"; 
+?>
     

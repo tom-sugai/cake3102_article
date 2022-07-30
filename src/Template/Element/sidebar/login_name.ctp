@@ -1,0 +1,1 @@
+<p><?= "logiNname : " . $loginname ?></p>
