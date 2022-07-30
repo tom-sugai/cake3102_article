@@ -26,17 +26,14 @@ echo $this->fetch('script');
     </header>
 
     <!-- ここがビューで表示されるようにしたい場所です -->
-    <div>
-        <article>
+    <container>
             <?= $this->fetch('content') ?>
-        </article>
-    </div>
-    <div>
-        <!-- 表示される各ページにフッターを追加します -->
-        <footer>
+    </container>
+    
+    <!-- 表示される各ページにフッターを追加します -->
+    <footer>
             <?= $this->element('footerbox'); ?>
-        </footer>
-    </div>
- 
-</body>
+    </footer>
+    
+    </body>
 </html>
