@@ -13,7 +13,8 @@
         <li><?= $this->Html->link(__('List Comments'), ['controller' => 'Comments', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Tags'), ['controller' => 'Tags', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Tag'), ['controller' => 'Tags', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Tags'), ['controller' => 'Tags', 'action' => 'add']) ?></li>
+        <li><?= $article->user_id ?></li>
     </ul>
 </nav>
 <div class="articles form large-9 medium-8 columns content">
@@ -22,7 +23,7 @@
         <legend><?= __('Add Article') ?></legend>
         <?php
             //echo $this->Form->control('user_id', ['options' => $users]);
-            echo $this->Form->control('user_id');
+            echo $this->Form->text('user_id');
             echo $this->Form->control('title');
             echo $this->Form->control('body');
             echo $this->Form->control('published');           
