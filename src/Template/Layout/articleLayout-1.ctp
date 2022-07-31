@@ -22,18 +22,17 @@ echo $this->fetch('script');
 
     <!-- もしすべてのビューでメニューを表示したい場合、ここに入れます -->
     <header>
-            <?= $this->element('headerbox'); ?> 
+            <?= $this->element('headerbox') . " loginname : " . $loginname; ?>
     </header>
     <div>
     <?php
-        $this->Html->addCrumb('Fumiko1','/exc-orm/fumiko1');
-        $this->Html->addCrumb('Fumiko2','/exc-orm/fumiko2');
-        $this->Html->addCrumb('Fumiko3','/exc-orm/fumiko3');
-        $this->Html->addCrumb('Fumiko4','/exc-orm/fumiko4');
+        $this->Html->addCrumb('Login','/users/login');
+        $this->Html->addCrumb('Poost','/articles/add');
+        $this->Html->addCrumb('Logout','/users/logout');
     ?>
     <?=$this->Html->getCrumbs(' | ',array(
         'text' => 'top',
-        'url' => '/exc-orm/index',
+        'url' => '/articles/top',
         'escape' => false,
     )); ?>
     </div>
