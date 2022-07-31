@@ -111,12 +111,12 @@ class ArticlesController extends AppController
         $this->autoRender = true;
 
         $article = $this->Articles->newEntity();
+        $article->user_id = $this->Auth->user('id');
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             //$this->Flash->success($article->tag_string);
             // 変更: セッションから user_id をセット
-            $article->user_id = $this->Auth->user('id');
-            debug($article->user_id );
+            //$article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
                 return $this->redirect(['action' => 'top']);
