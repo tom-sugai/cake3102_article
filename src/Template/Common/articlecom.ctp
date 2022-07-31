@@ -1,5 +1,6 @@
 <!-- src/Template/Common/fumicom.ctp -->
 <sidebar>
+    <p>最近のトピックス</p>
     <div>
     <?= $this->fetch('sidebar') ?>
     </div>
@@ -18,8 +19,8 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
 </div>
 <actions>
-    <h3>新着情報</h3>
+    <h3>サイトの紹介</h3>
     <ul>
-    <?php echo $this->Html->link('tom', ['action' => 'tom']) . "<br/>"; ?>
-    </ul>
+    <?php echo $this->Html->link('会社案内', ['action' => 'top']) . "<br/>"; ?>
+</ul>
 </actions>

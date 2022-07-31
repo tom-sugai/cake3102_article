@@ -20,8 +20,9 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $this->Auth->logout();
         $this->Flash->success('ログアウトしました。');
-        return $this->redirect($this->Auth->logout());
+        return $this->redirect($this->Auth->redirectUrl('/articles/top'));
     }
 
     public function login()
@@ -30,7 +31,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl('/articles'));
+                return $this->redirect($this->Auth->redirectUrl('/articles/top'));
             }
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }

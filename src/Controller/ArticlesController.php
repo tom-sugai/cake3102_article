@@ -58,8 +58,8 @@ class ArticlesController extends AppController
 
         $this->paginate = [
             'contain' => ['Users','Tags', 'Comments'],
-            'limit' => 5,
-            'order' => ['Articles.id' => 'asc']
+            'limit' => 6,
+            'order' => ['Articles.id' => 'desc']
         ];
 
         $articles = $this->paginate($this->Articles);
@@ -116,10 +116,10 @@ class ArticlesController extends AppController
             //$this->Flash->success($article->tag_string);
             // 変更: セッションから user_id をセット
             $article->user_id = $this->Auth->user('id');
-
+            debug($article->user_id );
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'top']);
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
