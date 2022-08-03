@@ -16,13 +16,14 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow(['logout','add','edit','delete']);
+        $this->set('loginname', $this->Auth->user('email'));
     }
 
     public function logout()
     {
         $this->Auth->logout();
         $this->Flash->success('ログアウトしました。');
-        return $this->redirect($this->Auth->redirectUrl('/articles/top'));
+        return $this->redirect($this->Auth->redirectUrl('/articles/'));
     }
 
     public function login()
@@ -31,7 +32,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl('/articles/top'));
+                return $this->redirect($this->Auth->redirectUrl('/articles/index'));
             }
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
