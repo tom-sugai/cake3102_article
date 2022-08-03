@@ -35,19 +35,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
+
+    <header>        
+        <h5><?= $this->element('headerbox') . " loginname : " . $loginname; ?></h5>
+    </header>
+    <div>
+    <?php
+        $this->Html->addCrumb('Login','/users/login');
+        $this->Html->addCrumb('Poost','/articles/add');
+        $this->Html->addCrumb('Logout','/users/logout');
+    ?>
+    <?=$this->Html->getCrumbs(' | ',array(
+        'text' => 'top',
+        'url' => '/articles/index',
+        'escape' => false,
+    )); ?>
+    </div>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
