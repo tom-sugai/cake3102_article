@@ -14,6 +14,11 @@ use Cake\Collection\Collection;
  */
 class ArticlesController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->set('loginname', $this->Auth->user('email'));
+    }
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
@@ -47,15 +52,7 @@ class ArticlesController extends AppController
         $this->set('headertext',$headertext);
         $footertext = "footertext : end Articles Application";
         $this->set('footertext', $footertext);
-        $this->set('loginname', $this->Auth->user('email'));
-        //echo "top page !! " . "<br/>";
-
-        /** 
-        $articles = $this->Articles->find('all')->contain(['Users','Tags','Comments']);
-        //debug($articles);
-        $this->set('articles', $articles);
-        */
-
+        
         $this->paginate = [
             'contain' => ['Users','Tags', 'Comments'],
             'limit' => 6,
@@ -78,12 +75,12 @@ class ArticlesController extends AppController
         $this->paginate = [
             'contain' => ['Users'],
             'limit' => 10,
-            'order' => ['Articles.id' => 'asc']
+            'order' => ['Articles.id' => 'desc']
         ];
 
         $articles = $this->paginate($this->Articles);
         $this->set(compact('articles'));
-        $this->set('loginname', $this->Auth->user('email'));
+        
     }
 
     /**
