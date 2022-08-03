@@ -11,24 +11,25 @@
     </div>
     <div> 
         <?= $this->Number->format($article->id) ?>
-        h($this->Time->format($article->created, 'yyyy-MM-dd')  
         <?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?>
-        <?= h($this->Time->format($article->mpdified, 'yyyy-MM-dd')) ?>
+        <?= h($this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
     </div>
     <div>
-        <?= __('Title') ?>
+        <h5><?= __('Title') ?></h5>
         <p><?= h($article->title) ?></p>
     </div>
     <div>
-        <?= __('Body') ?>
+        <h5><?= __('Body') ?></h5>
         <?= $this->Text->autoParagraph(h($article->body)); ?>       
     </div>
     <div>
+        <?= __('Published') ?>    
         <p><?= $article->published ? __('Yes') : __('No'); ?></p>
+        <h5><?= __('Tags') ?></h5>
         <p><?= $article->tag_string ?></p>
     </div>
     <div>
-        <?= __('Related Comments') ?>
+        <h5><?= __('Related Comments') ?></h5>
         <?php if (!empty($article->comments)): ?>
             <?php foreach ($article->comments as $comments): ?>
                 <p><?= h($comments->id) ?>
