@@ -74,12 +74,12 @@ class AppController extends Controller
 
         // display アクションを許可して、PagesController が引き続き
         // 動作するようにします。また、読み取り専用のアクションを有効にします。
-        $this->Auth->allow(['display', 'view', 'index', 'top']);
+        $this->Auth->allow(['display', 'view', 'index']);
     }
 
     public function isAuthorized($user)
     {
-        debug($user);
+        
         // 管理者はすべての操作にアクセスできます
         if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
