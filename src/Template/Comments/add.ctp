@@ -17,7 +17,8 @@
     <fieldset>
         <legend><?= __('Add Comment') ?></legend>
         <?php
-            echo $this->Form->control('article_id', ['options' => $articles]);
+            //echo $this->Form->control('article_id', ['options' => $articles]);
+            echo $this->Form->control('article_id', ['type' => 'intger', 'value' => $target]);
             echo $this->Form->control('body');
             echo $this->Form->control('published');
         ?>
