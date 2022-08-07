@@ -1,3 +1,13 @@
+.post {
+    margin: 4px;
+    border: 2px solid green;
+}
+
+.comment {
+    margin: 4px;
+    border: 2px solid red;
+}
+
 .disabled a,
 a.disabled {
     pointer-events: none;
