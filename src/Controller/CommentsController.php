@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class CommentsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->set('loginname', $this->Auth->user('email'));
+    }
 
     public function isAuthorized($user)
     {
@@ -58,15 +63,21 @@ class CommentsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($article_id = null)
     {
+        debug($article_id);
+        $this->loadModel('Articles');
+        $article = $this->Articles->get($article_id);
+        $slug = $article->slug;
+        $this->set('target', $article_id);
         $comment = $this->Comments->newEntity();
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
+            $comment->contributor = $this->Auth->user('email');
             if ($this->Comments->save($comment)) {
                 $this->Flash->success(__('The comment has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+               
+                return $this->redirect(['controller' => 'Articles', 'action' => 'view', $slug]);
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
