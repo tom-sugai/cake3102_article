@@ -14,9 +14,12 @@ class UsersController extends AppController
 {
     public function initialize()
     {
-        parent::initialize();
-        $this->Auth->allow(['logout','add','edit','delete']);
+        parent::initialize();    
         $this->set('loginname', $this->Auth->user('email'));
+    }
+
+    public function beforeFilter(Event $event) {
+        $this->Auth->allow('add');
     }
 
     public function logout()
