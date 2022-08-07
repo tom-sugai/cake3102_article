@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -19,7 +20,8 @@ class UsersController extends AppController
     }
 
     public function beforeFilter(Event $event) {
-        $this->Auth->allow('add');
+        parent::beforeFilter($event);
+        $this->Auth->allow(['add', 'logout']);
     }
 
     public function logout()
