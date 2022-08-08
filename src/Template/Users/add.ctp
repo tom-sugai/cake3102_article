@@ -20,7 +20,7 @@
             echo $this->Form->control('email');
             echo $this->Form->control('password');
             echo $this->Form->control('role', [
-                'options' => ['admin' => 'Admin', 'author' => 'Author']
+                'options' => ['author' => 'Author']
             ]);
         ?>
     </fieldset>
