@@ -70,21 +70,23 @@ class AppController extends Controller
             ],
             // 未認証の場合、直前のページに戻します
             'unauthorizedRedirect' => $this->referer()
+
         ]);
 
         // display アクションを許可して、PagesController が引き続き
         // 動作するようにします。また、読み取り専用のアクションを有効にします。
-        $this->Auth->allow(['display', 'view', 'index']);
+        $this->Auth->allow(['display']);
+
+        $this->set('loginname', $this->Auth->user('email'));
+        $this->set('userId', $this->Auth->user('id'));
     }
 
     public function isAuthorized($user)
-    {
-        
+    {    
         // 管理者はすべての操作にアクセスできます
         if (isset($user['role']) && $user['role'] === 'admin') {
             return true;
         }
-
         // デフォルトは拒否
         return false;
     }
