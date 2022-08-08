@@ -13,7 +13,7 @@
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
         <!--    <th scope="col"><?= $this->Paginator->sort('published') ?></th> -->
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+        <!--    <th scope="col"><?= $this->Paginator->sort('modified') ?></th> -->
         <!--    <th scope="col" class="actions"><?= __('Actions') ?></th> -->
             </tr>
         </thead>
@@ -23,9 +23,9 @@
                 <td><?= $this->Number->format($article->id) ?></td>
                 <td><?= $article->has('user') ? $this->Html->link($article->user->email, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
                 <td><?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?></td>
-            <!--    <td><?= h($article->published) ?></td> -->
+        <!--    <td><?= h($article->published) ?></td> -->
                 <td><?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?></td>
-                <td><?= h($this->Time->format($article->modified, 'yyyy-MM-dd')) ?></td>
+        <!--    <td><?= h($this->Time->format($article->modified, 'yyyy-MM-dd')) ?></td> -->
             <!--    <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
