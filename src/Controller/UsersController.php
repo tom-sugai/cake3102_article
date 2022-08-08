@@ -16,12 +16,11 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();    
-        $this->set('loginname', $this->Auth->user('email'));
     }
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add', 'logout']);
+        $this->Auth->allow(['add', 'view', 'edit', 'logout']);
     }
 
     public function logout()
@@ -37,7 +36,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl('/articles/'));
             }
             $this->Flash->error('ユーザー名またはパスワードが不正です。');
         }
@@ -64,10 +63,10 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        //debug($id);
         $user = $this->Users->get($id, [
             'contain' => ['Articles'],
         ]);
-
         $this->set('user', $user);
     }
 
@@ -84,7 +83,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'articles', 'action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -103,12 +102,19 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
+
+        if ($user->role != 'admin') {
+            if ($user->id != $this->Auth->user('id')) {
+                $this->Flash->error(__('This is noy your page!!'));
+                return $this->redirect(['controller' => 'articles', 'action' => 'index']);        
+            }
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'articles', 'action' => 'index']);  
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
