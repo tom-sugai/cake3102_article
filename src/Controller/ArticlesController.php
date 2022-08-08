@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 // add for collection class
 use Cake\Collection\Collection;
 
@@ -17,13 +18,19 @@ class ArticlesController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->set('loginname', $this->Auth->user('email'));
+        
     }
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
+
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
         // add および tags アクションは、常にログインしているユーザーに許可されます。
-        if (in_array($action, ['add', 'tags','edit'])) {
+        if (in_array($action, ['add', 'tags', 'edit'])) {
             return true;
         }
 
@@ -80,7 +87,7 @@ class ArticlesController extends AppController
 
         $articles = $this->paginate($this->Articles);
         $this->set(compact('articles'));
-        
+        $this->set('userId', $this->Auth->user('id'));
     }
 
     /**
@@ -108,15 +115,15 @@ class ArticlesController extends AppController
         $this->autoRender = true;
 
         $article = $this->Articles->newEntity();
-        $article->user_id = $this->Auth->user('id');
+        //$article->user_id = $this->Auth->user('id');
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             //$this->Flash->success($article->tag_string);
             // 変更: セッションから user_id をセット
-            //$article->user_id = $this->Auth->user('id');
+            $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
-                return $this->redirect(['action' => 'top']);
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
