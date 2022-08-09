@@ -5,36 +5,31 @@
  */
 ?>
 <div class="articles index large-9 medium-8 columns content">
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-        <!--    <th scope="col"><?= $this->Paginator->sort('published') ?></th> -->
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-        <!--    <th scope="col"><?= $this->Paginator->sort('modified') ?></th> -->
-        <!--    <th scope="col" class="actions"><?= __('Actions') ?></th> -->
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($articles as $article): ?>
-            <tr>
-                <td><?= $this->Number->format($article->id) ?></td>
-                <td><?= $article->has('user') ? $this->Html->link($article->user->email, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
-                <td><?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?></td>
-        <!--    <td><?= h($article->published) ?></td> -->
-                <td><?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?></td>
-        <!--    <td><?= h($this->Time->format($article->modified, 'yyyy-MM-dd')) ?></td> -->
-            <!--    <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $article->slug)]) ?>
-                </td> -->
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <div class="thead">
+        <p><?= $this->Paginator->sort('id') ?></p>
+        <p><?= $this->Paginator->sort('user_id') ?></p>
+        <p><?= $this->Paginator->sort('title') ?></p>
+<!--    <p><?= $this->Paginator->sort('published') ?></p> -->
+        <p><?= $this->Paginator->sort('created') ?></p>
+<!--    <p><?= $this->Paginator->sort('modified') ?></p> -->
+<!--    <p class="actions"><?= __('Actions') ?></p> -->
+    </div>
+    <?php foreach ($articles as $article): ?>
+    <div class="tbody">
+        <p><?= $this->Number->format($article->id) ?></p>
+        <p><?= $article->has('user') ? $this->Html->link($article->user->email, ['condivoller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></p>
+        <p><?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?></p>
+<!--    <p><?= h($article->published) ?></p> -->
+        <p><?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?></p>
+<!--    <p><?= h($this->Time->format($article->modified, 'yyyy-MM-dd')) ?></p> -->
+<!--    <p class="actions">
+            <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
+            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
+            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $article->slug)]) ?>
+        </p> 
+-->
+    </div>
+    <?php endforeach; ?>
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
