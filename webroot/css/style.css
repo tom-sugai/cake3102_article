@@ -1,3 +1,11 @@
+.tbody {
+    display:flex;
+}
+
+.thead {
+    display:flex;
+}
+
 .post {
     margin: 4px;
     border: 2px solid green;
