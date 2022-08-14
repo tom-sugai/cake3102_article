@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Comment[]|\Cake\Collection\CollectionInterface $comments
  */
 ?>
+<!--
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -12,6 +13,7 @@
         <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+-->
 <div class="comments index large-9 medium-8 columns content">
     <h3><?= __('Comments') ?></h3>
     <table cellpadding="0" cellspacing="0">
