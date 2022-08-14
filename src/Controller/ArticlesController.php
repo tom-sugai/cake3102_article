@@ -99,7 +99,8 @@ class ArticlesController extends AppController
      */
     public function view($slug = null)
     {
-        $article = $this->Articles->findBySlug($slug)->contain(['Users','Tags','Comments'])->firstOrFail();
+        $article = $this->Articles->findBySlug($slug)->contain(['Users','Tags','Comments' => ['sort' => ['Comments.id' => 'DESC']]])->firstOrFail();
+        //debug($article);
         $this->set('article', $article);
     }
 
