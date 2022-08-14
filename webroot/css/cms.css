@@ -1,0 +1,29 @@
+header {
+    background-color:#ffcc00;
+    color: #ffffff;
+    font-size: 16px;
+    height:auto;
+    line-height: 200%;
+    padding: 16px 0px;
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.24);
+    display:flex; justify-content:space-around;
+}
+.header-title { border:solid 2px blue;
+    
+}
+.header-loginname { border:solid 2px red;
+    
+}
+.crumb-container {
+    margin-left:30px; text-align:left;
+}
+.tbody { border:solid 2px blueviolet; margin:10px;
+
+}
+.post { border:solid 2px greenyellow; margin:8px;}
+.new-comment {text-align:right; margin-right:20px;}
+.related-comments {border:solid 2px greenyellow; margin:8px;}
+.comment {border:solid 2px pink;}
+.user-info {border:solid 2px greenyellow; margin:8px;}
+.related-articles {border:solid 2px greenyellow; margin:8px;}
+.my-post {border:solid 2px pink; margin:2px;}
