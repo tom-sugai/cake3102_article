@@ -43,7 +43,7 @@
                     <?= h($articles->published) ?>
 
                     <div class="actions">
-                        <?= $this->Html->link(__('View'), ['controller' => 'Articles', 'action' => 'view', $articles->slug]) ?>
+                        <?= $this->Html->link(__('ViewComment'), ['controller' => 'Articles', 'action' => 'view', $articles->slug]) ?>
                         <?= $this->Html->link(__('Edit'), ['controller' => 'Articles', 'action' => 'edit', $articles->slug]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['controller' => 'Articles', 'action' => 'delete', $articles->id], ['confirm' => __('Are you sure you want to delete # {0}?', $articles->id)]) ?>
                     </div>
