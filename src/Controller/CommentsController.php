@@ -22,7 +22,7 @@ class CommentsController extends AppController
     {
         $action = $this->request->getParam('action');
         // add および tags アクションは、常にログインしているユーザーに許可されます。
-        if (in_array($action, ['add', 'tags'])) {
+        if (in_array($action, ['add', 'tags', 'index', 'view', 'edit', 'delete'])) {
             return true;
         }
     }
