@@ -39,7 +39,11 @@
                 <!--    <?= h("  modified : " . $this->Time->format($comments->modified, 'yyyy-MM-dd')) ?></p> -->
                     <p><?= h($comments->body) ?></p>
                     <!--<?= h("  published : " . $comments->published) ?> -->
-                    </div>    
+                    <div class="comments-action">
+                        <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
+                    </div>
+                </div>          
             <?php endforeach; ?>        
         <?php endif; ?>
     </div>
