@@ -64,8 +64,12 @@ class UsersController extends AppController
     public function view($id = null)
     {
         //debug($id);
+        if ($id == null) {
+            //debug($id);
+            return $this->redirect(['action' => 'login']);
+        }
         $user = $this->Users->get($id, [
-            'contain' => ['Articles'],
+            'contain' => ['Articles' => ['sort' => ['Articles.id' => 'DESC']]],
         ]);
         $this->set('user', $user);
     }
