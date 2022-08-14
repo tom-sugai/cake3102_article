@@ -29,6 +29,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('cms.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -37,21 +38,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
 
     <header>        
-        <h5><?= $this->element('headerbox') . " loginname : " . $loginname; ?></h5>
+        <div class="header-title"><h4><?= $this->element('headerbox') ?></h4></div>
+        <div class="header-loginname"><?= " loginname : " . $loginname; ?></div>
     </header>
-    <div>
-    <?php
-        $this->Html->addCrumb('Login','/users/login');
-        $this->Html->addCrumb('Poost','/articles/add');
-        $this->Html->addCrumb('Logout','/users/logout');
-        //$this->Html->addCrumb('MyInfo','/users/view',['type' => 'integer', 'value' => $userId]);
-        $this->Html->addCrumb('MyInfo',['controller' => 'Users', 'action' => 'view', $userId]);
-    ?>
-    <?=$this->Html->getCrumbs(' | ',array(
-        'text' => 'top',
-        'url' => '/articles/index',
-        'escape' => false,
-    )); ?>
+    <div class="crumb-container">
+        <?php
+            $this->Html->addCrumb('Login','/users/login');
+            $this->Html->addCrumb('Poost','/articles/add');
+            $this->Html->addCrumb('Logout','/users/logout');
+            //$this->Html->addCrumb('MyInfo','/users/view',['type' => 'integer', 'value' => $userId]);
+            $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
+        ?>
+        <?=$this->Html->getCrumbs(' | ',array(
+            'text' => 'top',
+            'url' => '/articles/index',
+            'escape' => false,
+        )); ?>
     </div>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
