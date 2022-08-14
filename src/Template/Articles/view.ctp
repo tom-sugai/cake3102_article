@@ -6,50 +6,41 @@
 ?>
 
 <div>
-    <div>
-        <?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?>      
-    </div>
     <div class="post">
         <div>
-            <?= "Auth : " ?>
-            <?= $article->has('user') ? $this->Html->link($article->user->email, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?> 
-        </div>
-        <div> 
-            <?= $this->Number->format($article->id) ?>
-            <?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?>
-            <?= h($this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
-        </div>
-        <div>
-            <h5><?= __('Title') ?></h5>
-            <p><?= h($article->title) ?></p>
-            <p><?= h($article->slug) ?></p>
+            <?= "Post No : " ?><?= $this->Number->format($article->id) ?>
+            <?= __('  Title : ') ?><?= h($article->title) ?><br>
+            <?= "  Auth : " ?><?= strtok($article->user->email,'@') ?>
+            <?= h("created : " . $this->Time->format($article->created, 'yyyy-MM-dd')) ?>
+            <?= h("  modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
+            <?= __('Published : ') ?>    
+            <?= $article->published ? __('Yes') : __('No'); ?>
+            <?= __('Tags : ') ?><?= $article->tag_string ?>
         </div>
         <div>
-            <h5><?= __('Body') ?></h5>
-            <?= $this->Text->autoParagraph(h($article->body)); ?>       
-        </div>
-        <div>
-            <?= __('Published') ?>    
-            <p><?= $article->published ? __('Yes') : __('No'); ?></p>
-            <h5><?= __('Tags') ?></h5>
-            <p><?= $article->tag_string ?></p>
+            <?= $this->Text->autoParagraph(h($article->body)); ?>
+        </div>        
+        <div class="new-comment">
+            <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
+            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
+            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $article->slug)]) ?>
+            <?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?>      
         </div>
     </div>
-    <div>
+
+    <div class="related-comments">
         <h5><?= __('Related Comments') ?></h5>
         <?php if (!empty($article->comments)): ?>       
             <?php foreach ($article->comments as $comments): ?>
                 <div class="comment">
-                <p><?= "Contributor : " . $comments->contributor ?></p>
-                <p><?= h($comments->id) ?>
-                <?= h($this->Time->format($comments->created, 'yyyy-MM-dd')) ?>
-                <?= h($this->Time->format($comments->modified, 'yyyy-MM-dd')) ?></p>
-                <!-- <p><?= h($comments->article_id) ?></p> -->
-                <p><?= h($comments->body) ?></p>
-            <!-- <p><?= h($comments->published) ?></p> -->
-                </div>    
-            <?php endforeach; ?>
-            
+                    <?= h($comments->id) ?>
+                    <?= h(strtok(strtok($comments->contributor,'@'),'.'))?>  
+                    <?= h("created : " . $this->Time->format($comments->created, 'yyyy-MM-dd')) ?>
+                <!--    <?= h("  modified : " . $this->Time->format($comments->modified, 'yyyy-MM-dd')) ?></p> -->
+                    <p><?= h($comments->body) ?></p>
+                    <!--<?= h("  published : " . $comments->published) ?> -->
+                    </div>    
+            <?php endforeach; ?>        
         <?php endif; ?>
     </div>
 </div>
