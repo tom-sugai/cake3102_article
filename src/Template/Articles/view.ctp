@@ -21,10 +21,9 @@
             <?= $this->Text->autoParagraph(h($article->body)); ?>
         </div>        
         <div class="new-comment">
-            <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
+            <?= $this->Html->link(__('PostComment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?>  
             <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
             <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $article->slug)]) ?>
-            <?= $this->Html->link(__('New Comment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?>      
         </div>
     </div>
 
