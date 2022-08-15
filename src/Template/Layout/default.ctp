@@ -44,9 +44,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="crumb-container">
         <?php
             $this->Html->addCrumb('Login','/users/login');
-            $this->Html->addCrumb('Poost','/articles/add');
             $this->Html->addCrumb('Logout','/users/logout');
-            //$this->Html->addCrumb('MyInfo','/users/view',['type' => 'integer', 'value' => $userId]);
+            $this->Html->addCrumb('NewPoost','/articles/add');
             $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
         ?>
         <?=$this->Html->getCrumbs(' | ',array(
