@@ -21,9 +21,17 @@ class CommentsController extends AppController
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
+
         // add および tags アクションは、常にログインしているユーザーに許可されます。
-        if (in_array($action, ['add', 'tags', 'index', 'view', 'edit', 'delete'])) {
+        if (in_array($action, ['add', 'tags', 'index', 'view'])) {
             return true;
+        }
+
+        // コメントが現在のユーザーに属していることを確認します。
+	    $id = $this->request->getParam('pass.0');
+	    $comment = $this->Comments->get($id, ['contain' => [],]);
+        if (in_array($action, ['edit', 'delete']) && $comment->contributor === $this->Auth->user('email')) {
+           return true;
         }
     }
 
@@ -94,10 +102,13 @@ class CommentsController extends AppController
      */
     public function edit($id = null)
     {   
-        debug($this->request);
+        //debug($this->request);
+        //debug($id);
         $comment = $this->Comments->get($id, [
             'contain' => [],
         ]);
+        //debug($comment->contributor);
+        //debug($this->Auth->user('email'));     
         if ($this->request->is(['patch', 'post', 'put'])) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
