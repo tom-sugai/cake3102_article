@@ -23,7 +23,7 @@ class ArticlesController extends AppController
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'view']);
+        $this->Auth->allow(['index', 'view','tags']);
     }
 
     public function isAuthorized($user)
@@ -116,10 +116,8 @@ class ArticlesController extends AppController
         $this->autoRender = true;
 
         $article = $this->Articles->newEntity();
-        //$article->user_id = $this->Auth->user('id');
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
-            //$this->Flash->success($article->tag_string);
             // 変更: セッションから user_id をセット
             $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
