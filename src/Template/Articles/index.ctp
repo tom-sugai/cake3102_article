@@ -26,6 +26,7 @@
         <?= $article->body ?><br>
         <?= h("published : " . $article->published) ?>
         <?= h("modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
+        <?= $this->Html->link(__('PostComment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?> 
     </div>
     <?php endforeach; ?>
 <!--    <div class="paginator"> -->
