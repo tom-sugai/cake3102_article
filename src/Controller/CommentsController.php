@@ -101,8 +101,8 @@ class CommentsController extends AppController
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
                 $this->Flash->success(__('The comment has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                $article = $this->Comments->Articles->get($comment->article_id);
+                return $this->redirect(['controller' => 'Articles', 'action' => 'view',$article->slug]);
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
