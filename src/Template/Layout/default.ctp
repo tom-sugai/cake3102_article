@@ -45,7 +45,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?php
             $this->Html->addCrumb('Login','/users/login');
             $this->Html->addCrumb('Logout','/users/logout');
-            $this->Html->addCrumb('NewPoost','/articles/add');
+            $this->Html->addCrumb('NewPost','/articles/add');
             $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
         ?>
         <?=$this->Html->getCrumbs(' | ',array(
