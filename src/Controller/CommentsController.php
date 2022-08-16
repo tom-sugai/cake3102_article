@@ -28,10 +28,17 @@ class CommentsController extends AppController
         }
 
         // コメントが現在のユーザーに属していることを確認します。
-	    $id = $this->request->getParam('pass.0');
-	    $comment = $this->Comments->get($id, ['contain' => [],]);
+        $id = $this->request->getParam('pass.0');
+        $comment = $this->Comments->get($id, ['contain' => [],]);
+        $this->loadModel('Articles');
+        $article = $this->Articles->get($comment->article_id);
+        $this->loadModel('Users');
+        $user = $this->Users->get($article->user_id);
         if (in_array($action, ['edit', 'delete']) && $comment->contributor === $this->Auth->user('email')) {
-           return true;
+            return true;
+        }
+        if (in_array($action, ['edit', 'delete']) && $this->Auth->user('email') === $user->email) {
+            return true;
         }
     }
 
@@ -73,7 +80,7 @@ class CommentsController extends AppController
      */
     public function add($article_id = null)
     {
-        debug($article_id);
+        //debug($article_id);
         $this->loadModel('Articles');
         $article = $this->Articles->get($article_id);
         $slug = $article->slug;
@@ -138,7 +145,8 @@ class CommentsController extends AppController
         } else {
             $this->Flash->error(__('The comment could not be deleted. Please, try again.'));
         }
-
-        return $this->redirect(['action' => 'index']);
+        $article = $this->Comments->Articles->get($comment->article_id);
+        return $this->redirect(['controller' => 'Articles', 'action' => 'view',$article->slug]);
+        //return $this->redirect(['action' => 'index']);
     }
 }
