@@ -39,3 +39,4 @@ nbproject/*
 .vscode
 # Sass preprocessor
 .sass-cache/
+cake_cms.sqlite3
