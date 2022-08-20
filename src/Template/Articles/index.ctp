@@ -17,16 +17,21 @@
     </div>
     -->
     <?php foreach ($articles as $article): ?>
-    <div class="tbody">   
-        <?= $this->Number->format($article->id) ?>
-        <?= $article->has('user') ? strtok(strtok($article->user->email,'@'),'.') : '' ?>
-        <?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?>
-        <?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?>
-        <br>
-        <?= $article->body ?><br>
-        <?= h("published : " . $article->published) ?>
-        <?= h("modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
-        <?= $this->Html->link(__('PostComment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?> 
+    <div class="article">
+        <div class="article-header">   
+            <div class="article-no"><?= $this->Number->format($article->id) ?></div>
+            <div class="article-author"><?= $article->has('user') ? strtok(strtok($article->user->email,'@'),'.') : '' ?></div>
+            <div class="article-created"><?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?></div>
+            <div class="article-title"><?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?></div>
+        </div>
+        <div class="article-body">
+            <?= $article->body ?><br>
+        </div>
+        <div class="article-footer">
+            <div class="published"><?= h("published : " . $article->published) ?></div>
+            <div class="modified"><?= h("modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?></div>
+            <div class="PostComment"><?= $this->Html->link(__('PostComment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?></div> 
+        </div>
     </div>
     <?php endforeach; ?>
 <!--    <div class="paginator"> -->
