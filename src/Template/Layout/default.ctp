@@ -38,8 +38,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
 
     <header>        
-        <div class="header-title"><h4><?= $this->element('headerbox') ?></h4></div>
-        <div class="header-loginname"><?= " loginname : " . $loginname; ?></div>
+        <div class="header-title"><?= $this->element('headerbox') ?></div>
+        <div class="header-loginname"><?= "User Name : " . $loginname; ?></div>
     </header>
     <div class="crumb-container">
         <?php
@@ -49,7 +49,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
         ?>
         <?=$this->Html->getCrumbs(' | ',array(
-            'text' => 'top',
+            'text' => 'Top',
             'url' => '/articles/index',
             'escape' => false,
         )); ?>
