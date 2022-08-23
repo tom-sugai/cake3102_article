@@ -72,6 +72,10 @@ class UsersController extends AppController
             'contain' => ['Articles' => ['sort' => ['Articles.id' => 'DESC']]],
         ]);
         $this->set('user', $user);
+        //debug($user->articles);
+        $articlesArray[] = $user->articles;
+        $articleCount = count($articlesArray[0]);
+        $this->set('articleCount',$articleCount);
     }
 
     /**
