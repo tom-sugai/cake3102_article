@@ -40,20 +40,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <header>        
         <div class="header-title"><?= $this->element('headerbox') ?></div>
         <div class="header-loginname"><?= "User Name : " . $loginname; ?></div>
+        <div class="crumb-container">
+            <?php
+                $this->Html->addCrumb('Login','/users/login');
+                $this->Html->addCrumb('Logout','/users/logout');
+                $this->Html->addCrumb('NewPost','/articles/add');
+                $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
+            ?>
+            <?=$this->Html->getCrumbs(' | ',array(
+                'text' => 'Top',
+                'url' => '/articles/index',
+                'escape' => false,
+            )); ?>
+        </div>    
     </header>
-    <div class="crumb-container">
-        <?php
-            $this->Html->addCrumb('Login','/users/login');
-            $this->Html->addCrumb('Logout','/users/logout');
-            $this->Html->addCrumb('NewPost','/articles/add');
-            $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
-        ?>
-        <?=$this->Html->getCrumbs(' | ',array(
-            'text' => 'Top',
-            'url' => '/articles/index',
-            'escape' => false,
-        )); ?>
-    </div>
+
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
