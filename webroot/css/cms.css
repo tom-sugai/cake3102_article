@@ -1,7 +1,7 @@
 header {
     font-family:sans-serif,'Noto Serif CJK JP','Noto Sans CJK JP',
     'Noto Sans Mono CJK JP';   
-    background-color:#9bd689;
+    background-color:yellow;
     height:auto;
     margin:10px;
     padding: 10px;
@@ -19,21 +19,28 @@ header {
     line-height:150%; text-align:right;
 }
 .crumb-container {
-    margin-left:20px; text-align:left; font-style:normal; font-weight:200;
+    margin-left:20px; text-align:left; font-style:italic; font-weight:400;
+    font-size:16px;color:red;
 }
-.article { border:solid 1px black; margin:10px; padding:10px;
-}
-.article-header { display:flex; gap:20px;
-}
-.article-body { margin:10px 0px; font-family:sans-serif,'Noto Serif CJK JP';
-}
-.article-footer { display:flex; gap:20px;
-}
-.post { border:solid 2px greenyellow; margin:8px;}
-.new-comment {text-align:right; margin-right:20px;}
-.related-comments {border:solid 2px greenyellow; margin:8px;}
-.comment {border:solid 2px pink;}
-.user-info {border:solid 2px greenyellow; margin:8px;}
-.related-articles {border:solid 2px greenyellow; margin:8px;}
-.my-post {border:solid 2px pink; margin:2px;}
-.comments-action {text-align: right;}
+
+.article-index { border:solid 1px black; margin:10px;padding:10px;}
+.article-index-header { }
+.article-index-body { font-family:sans-serif,'Noto Serif CJK JP'; margin:4px 0px; }
+.article-index-footer { display:flex; justify-content:flex-start; gap:20px;}
+.article-index-footer > .posted-comments {color:red;}
+
+.article-view {border:solid 1px black; margin:10px; padding:10px;}
+.article-view-info { margin:8px;display:inline-flex;}
+.article-view-body { margin:8px;}
+.article-view-action { margin:8px;
+    display:flex; justify-content:flex-start; gap:10px;}
+.article-view-action > .posted-comments {color:red;}
+
+.article-view-comments { border:solid 1px black; margin:10px; padding:10px; }
+.article-view-comment-info {}
+.article-view-comment-body {}
+.article-view-comment-action {
+    display:flex; justify-content:flex-start; gap:10px;}
+
+.user-view-info {border:2px solid greenyellow;margin:4px;padding:4px;}
+.user-view-articles {border:2px solid black;margin:4px;padding:4px;}
