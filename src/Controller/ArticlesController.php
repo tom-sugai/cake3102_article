@@ -86,8 +86,10 @@ class ArticlesController extends AppController
         ];
 
         $articles = $this->paginate($this->Articles);
+        //debug($articles);
         $this->set(compact('articles'));
         $this->set('userId', $this->Auth->user('id'));
+        $this->set('Comments', $this->loadModel('Comments'));
     }
 
     /**
@@ -102,6 +104,13 @@ class ArticlesController extends AppController
         $article = $this->Articles->findBySlug($slug)->contain(['Users','Tags','Comments' => ['sort' => ['Comments.id' => 'DESC']]])->firstOrFail();
         //debug($article);
         $this->set('article', $article);
+        $this->loadModel('Comments');
+        $commentNumber = $this->Comments
+        	->find()
+        	->where(['article_id =' => $article->id])
+        	->count();
+        //debug($commentNumber);
+        $this->set('comNumber',$commentNumber);
     }
 
     /**
