@@ -17,25 +17,31 @@
     </div>
     -->
     <?php foreach ($articles as $article): ?>
-    <div class="article">
-        <div class="article-header">   
-            <div class="article-no"><?= $this->Number->format($article->id) ?></div>
-            <div class="article-author"><?= $article->has('user') ? strtok(strtok($article->user->email,'@'),'.') : '' ?></div>
-            <div class="article-created"><?= h($this->Time->format($article->created, 'yyyy-MM-dd')) ?></div>
-            <div class="article-title"><?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?></div>
+        <?php   $commentNumber = $Comments
+                ->find()
+                ->where(['article_id' => $article->id])
+                ->count();
+                //debug($commentNumber);
+        ?>
+    <div class="article-index">
+        <div class="article-index-header">   
+            <?= $this->Number->format($article->id) ?>
+            <?= $article->has('user') ? strtok(strtok($article->user->email,'@'),'.') : '' ?>
+            <?= $this->Html->link($article->title, ['controller' => 'Articles', 'action' => 'view', $article->slug]) ?>
+            <?= h("created : " . $this->Time->format($article->created, 'yyyy-MM-dd')) ?>
+            <?= h("published : ") ?><?= $article->published ? __('Yes') : __('No') ?>
+            <?= h("modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
         </div>
-        <div class="article-body">
+        <div class="article-index-body">
             <?= $article->body ?><br>
         </div>
-        <div class="article-footer">
-            <div class="published"><?= h("published : " . $article->published) ?></div>
-            <div class="modified"><?= h("modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?></div>
+        <div class="article-index-footer">
+            <div class="posted-comments"><?= "PostedComments : " . $commentNumber ?></div> 
             <div class="PostComment"><?= $this->Html->link(__('PostComment'), ['controller' => 'Comments', 'action' => 'add', $article->id]) ?></div> 
         </div>
     </div>
     <?php endforeach; ?>
-<!--    <div class="paginator"> -->
-    <div>
+    <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
