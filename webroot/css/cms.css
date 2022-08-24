@@ -29,11 +29,10 @@ header {
 .article-index-footer { display:flex; justify-content:flex-start; gap:20px;}
 .article-index-footer > .posted-comments {color:red;}
 
-.article-view {border:solid 1px black; margin:10px; padding:10px;}
-.article-view-info { margin:8px;display:inline-flex;}
-.article-view-body { margin:8px;}
-.article-view-action { margin:8px;
-    display:flex; justify-content:flex-start; gap:10px;}
+.article-view {border:solid 1px black; margin:4px; padding:4px;}
+.article-view-info { margin:2px;display:inline-flex;}
+.article-view-body { margin:2px;}
+.article-view-action { display:flex; justify-content:flex-start; gap:10px;}
 .article-view-action > .posted-comments {color:red;}
 
 .article-view-comments { border:solid 1px black; margin:10px; padding:10px; }
