@@ -8,8 +8,8 @@
     <h5><?= __('Article-Info') ?></h5>
     <div class="article-view">
         <div class="article-view-info">
-            <?= __('Article-No : ') . $this->Number->format($article->id) ?>
-            <?= __('Auth : ') . h(strtok($article->user->email,'@')) ?>
+            <?= __('No : ') . $this->Number->format($article->id) ?>
+            <?= __('Auth : ') . h(strtok(strtok($article->user->email,'@'),'.')) ?>
             <?= __("created : " . $this->Time->format($article->created, 'yyyy-MM-dd')) ?>
             <?= __('Published : ') ?><?= $article->published ? __('Yes') : __('No'); ?>
             <?= __("modified : " . $this->Time->format($article->modified, 'yyyy-MM-dd')) ?>
