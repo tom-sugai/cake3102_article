@@ -261,7 +261,7 @@ return [
     'Datasources' => [
         'default' => [
             'className' => Connection::class,
-            'driver' => Sqlite::class,
+            'driver' => Mysql::class,
             'persistent' => false,
             'host' => 'localhost',
             /*
