@@ -88,7 +88,7 @@ class ArticlesController extends AppController
         $articles = $this->paginate($this->Articles);
         //debug($articles);
         $this->set(compact('articles'));
-        $this->set('userId', $this->Auth->user('id'));
+        //$this->set('userId', $this->Auth->user('id'));
         $this->set('Comments', $this->loadModel('Comments'));
     }
 
