@@ -23,7 +23,7 @@ class ArticlesController extends AppController
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'view','tags']);
+        $this->Auth->allow(['index', 'view','tags', 'data']);
     }
 
     public function isAuthorized($user)
@@ -72,6 +72,27 @@ class ArticlesController extends AppController
 
     }
 
+    public function data()
+    {
+        $this->paginate = [
+            'contain' => ['Users', 'Comments'],
+            'limit' => 50,
+            'order' => ['Articles.id' => 'desc']
+        ];
+
+        $articles = $this->paginate($this->Articles);
+         
+        // for data view
+        $this->set(compact('articles'));
+        $this->set('_serialize', ['articles']);
+        
+        /** 
+        // for html view
+        $this->set(compact('articles'));
+        $this->set('Comments', $this->loadModel('Comments'));
+        */
+    }
+
     /**
      * Index method
      *
@@ -80,16 +101,22 @@ class ArticlesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users'],
+            'contain' => ['Users', 'Comments'],
             'limit' => 10,
             'order' => ['Articles.id' => 'desc']
         ];
 
         $articles = $this->paginate($this->Articles);
-        //debug($articles);
+        /** 
+        // for data view
         $this->set(compact('articles'));
-        //$this->set('userId', $this->Auth->user('id'));
+        $this->set('_serialize', ['articles']);
+        */
+        
+        // for html view
+        $this->set(compact('articles'));
         $this->set('Comments', $this->loadModel('Comments'));
+        
     }
 
     /**
