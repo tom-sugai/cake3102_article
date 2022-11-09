@@ -115,10 +115,6 @@ class ArticlesController extends AppController
         
         // for html view
         $this->set(compact('articles'));
-<<<<<<< HEAD
-        //$this->set('userId', $this->Auth->user('id'));
-=======
->>>>>>> 04cf91ab8c9286e217517f31f1bbe9a0f677ff39
         $this->set('Comments', $this->loadModel('Comments'));
         
     }
