@@ -15,12 +15,13 @@ class UsersController extends AppController
 {
     public function initialize()
     {
-        parent::initialize();    
+        parent::initialize();
+        //$this->Auth->allow(['index', 'add', 'view', 'logout']);
     }
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'add', 'view', 'edit', 'logout']);
+        $this->Auth->allow(['add', 'logout']);
     }
 
     public function logout()
@@ -114,11 +115,12 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
-
-        if ($user->role != 'admin') {
+        $this->Flash->success($this->Auth->user('role'));
+        if ($this->Auth->user('role') != 'admin') {
             if ($user->id != $this->Auth->user('id')) {
-                $this->Flash->error(__('This is noy your page!!'));
-                return $this->redirect(['controller' => 'articles', 'action' => 'index']);        
+                $this->Flash->success($user->role);
+                $this->Flash->error(__('This is not your page!!'));
+                return $this->redirect(['controller' => 'users', 'action' => 'index']);        
             }
         }
 

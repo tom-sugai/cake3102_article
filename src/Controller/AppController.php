@@ -55,7 +55,7 @@ class AppController extends Controller
         // 認証の設定
         $this->loadComponent('Auth', [
             // コントローラーで isAuthorized を使用します
-            'authorize' => 'Controller',
+            'authorize' => ['Controller'],
             'authenticate' => [           
                 'Form' => [
                     'fields' => [
@@ -70,12 +70,11 @@ class AppController extends Controller
             ],
             // 未認証の場合、直前のページに戻します
             'unauthorizedRedirect' => $this->referer()
-
         ]);
 
         // display アクションを許可して、PagesController が引き続き
         // 動作するようにします。また、読み取り専用のアクションを有効にします。
-        $this->Auth->allow(['display']);
+        $this->Auth->allow(['display', 'view', 'index']);
 
         $this->set('loginname', $this->Auth->user('email'));
         $this->set('userId', $this->Auth->user('id'));

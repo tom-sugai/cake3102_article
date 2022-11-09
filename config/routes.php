@@ -45,6 +45,9 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+// add file-extensions routing 2022-10-06 for test
+Router::extensions(['json', 'xml']);
+
 Router::scope(
     '/articles',
     ['controller' => 'Articles'],
