@@ -42,16 +42,32 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="header-loginname"><?= "User Name : " . $loginname; ?></div>
         <div class="crumb-container">
             <?php
-                $this->Html->addCrumb('Login','/users/login');
-                $this->Html->addCrumb('Logout','/users/logout');
-                $this->Html->addCrumb('NewPost','/articles/add');
-                $this->Html->addCrumb('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
+                //$this->Breadcrumbs->add('Login','/users/login');    
+                //$this->Breadcrumbs->add('Logout','/users/logout');
+                //$this->Breadcrumbs->add('NewPost','/articles/add');
+                //$this->Breadcrumbs->add('MyPage',['controller' => 'Users', 'action' => 'view', $userId]);
+                // 複数のパンくずを最後に追加
+                $this->Breadcrumbs->add([
+                    ['title' => 'Top', 'url' => ['controller' => 'articles', 'action' => 'index']],
+                    ['title' => 'Login', 'url' => ['controller' => 'users', 'action' => 'login']],
+                    ['title' => 'Logout', 'url' => ['controller' => 'users', 'action' => 'logout']],
+                    ['title' => 'NewPost', 'url' => ['controller' => 'articles', 'action' => 'add']],
+                    ['title' => 'MyPage', 'url' => ['controller' => 'Users', 'action' => 'view', $userId]]
+                ]);
+                echo $this->Breadcrumbs->render(
+                    ['class' => 'crumb-container'],
+                    ['separator' => '/']
+                );
+                
             ?>
-            <?=$this->Html->getCrumbs(' | ',array(
+
+
+        <!--    <?=$this->Breadcrumbs->getCrumbs(' | ',array(
                 'text' => 'Top',
                 'url' => '/articles/index',
                 'escape' => false,
             )); ?>
+        -->
         </div>    
     </header>
 
