@@ -261,7 +261,8 @@ return [
     'Datasources' => [
         'default' => [
             'className' => Connection::class,
-            'driver' => Sqlite::class,
+            //'driver' => Sqlite::class,
+            'driver' => 'Cake\Database\Driver\Sqlite',
             'persistent' => false,
             'host' => 'localhost',
             /*
@@ -312,13 +313,14 @@ return [
          */
         'test' => [
             'className' => Connection::class,
-            'driver' => Mysql::class,
+            //'driver' => Mysql::class,
+            'driver' => 'Cake\Database\Driver\Sqlite',
             'persistent' => false,
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
-            'username' => 'tom',
-            'password' => 'ts0521ts',
-            'database' => 'test_cake_cms',
+            //'username' => 'tom',
+            //'password' => 'ts0521ts',
+            //'database' => 'test_cake_cms',
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
