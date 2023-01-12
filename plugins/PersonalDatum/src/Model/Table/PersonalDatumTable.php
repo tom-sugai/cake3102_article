@@ -3,7 +3,7 @@
 
     use Cake\ORM\Query;
     use Cake\ORM\RulesChecker;
-    use Cake\ORM\Tablr;
+    use Cake\ORM\Table;
     use Cake\Validation\Validator;
 
     class PersonalDatumTable extends Table {
