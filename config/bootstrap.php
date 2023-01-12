@@ -42,6 +42,7 @@ use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+use Cake\Core\Plugin;
 
 /*
  * Uncomment block of code below if you want to use `.env` file during development.
