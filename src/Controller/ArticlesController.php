@@ -50,8 +50,8 @@ class ArticlesController extends AppController
     {
         $this ->autoLayout = true;
         $this->autoRender = true;
-
         $this->viewBuilder()->setLayout('articleLayout-1');
+
         //$this->Flash->set('---- Flash test from /fumiko4() ----');
         //$this->set('msg',"fumichan !!");
 
