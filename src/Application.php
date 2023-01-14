@@ -20,7 +20,8 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
-//use PersonalDatum\Plugin as PersonalDatumPlugin;
+use PersonalDatum\Plugin as PersonalDatumPlugin;
+
 /**
  * Application setup class.
  *
@@ -36,6 +37,7 @@ class Application extends BaseApplication
     {
         $this->addPlugin('PersonalDatum');
         //$this->addPlugin(PersonalDatumPlugin::class);
+        
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
