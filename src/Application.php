@@ -35,11 +35,16 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
-        $this->addPlugin('PersonalDatum');
-        //$this->addPlugin(PersonalDatumPlugin::class);
+
         
         // Call parent to load bootstrap from files.
         parent::bootstrap();
+
+        $plugin = new PersonalDatumPlugin();
+
+        $plugin->disable('bootstrap');
+        $plugin->enable('routes');
+        $this->addPlugin($plugin);
 
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
