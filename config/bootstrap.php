@@ -202,4 +202,4 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
-Plugin::load('PersonalDatum', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);
+//Plugin::load('PersonalDatum', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);
