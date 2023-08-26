@@ -100,6 +100,7 @@ class ArticlesController extends AppController
      */
     public function index()
     {
+        echo "hello world!!" . "<br/>";
         $this->paginate = [
             'contain' => ['Users', 'Comments'],
             'limit' => 10,
