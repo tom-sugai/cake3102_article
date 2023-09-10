@@ -18,7 +18,7 @@
         <div class="article-view-body">
             <div><?= __('Title : ') . h($article->title) ?></div>
             <div><?= $this->Text->autoParagraph(h($article->body)); ?></div>
-            <p><b>Tags:</b><?  h($article->tag_string) ?></p>
+            <p><b>Tags:</b><?= h($article->tag_string) ?></p>
         </div>      
         <div class="article-view-action">
             <div class="posted-comments"><?= "PostedComments : " . $comNumber ?></div>
