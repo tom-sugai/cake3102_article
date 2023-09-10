@@ -50,6 +50,7 @@ class TagsController extends AppController
         $tag = $this->Tags->newEntity();
         if ($this->request->is('post')) {
             $tag = $this->Tags->patchEntity($tag, $this->request->getData());
+            debug($tag);
             if ($this->Tags->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
 
