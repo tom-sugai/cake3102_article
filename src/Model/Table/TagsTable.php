@@ -55,10 +55,11 @@ class TagsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        /** 
         $validator
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
-
+        */
         $validator
             ->scalar('title')
             ->maxLength('title', 191)
