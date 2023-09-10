@@ -50,10 +50,8 @@ class TagsController extends AppController
         $tag = $this->Tags->newEntity();
         if ($this->request->is('post')) {
             $tag = $this->Tags->patchEntity($tag, $this->request->getData());
-            debug($tag);
             if ($this->Tags->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The tag could not be saved. Please, try again.'));
@@ -76,6 +74,7 @@ class TagsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $tag = $this->Tags->patchEntity($tag, $this->request->getData());
+            debug($tag);
             if ($this->Tags->save($tag)) {
                 $this->Flash->success(__('The tag has been saved.'));
 
