@@ -102,7 +102,7 @@ class ArticlesController extends AppController
     {
         $this->paginate = [
             'contain' => ['Users', 'Comments'],
-            'limit' => 10,
+            'limit' => 5,
             'order' => ['Articles.id' => 'desc']
         ];
 
