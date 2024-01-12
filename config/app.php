@@ -263,6 +263,7 @@ return [
     'Datasources' => [
         'default' => [
             'className' => Connection::class,
+            //'driver' => Mysql::class,
             //'driver' => Sqlite::class,
             'driver' => 'Cake\Database\Driver\Sqlite',
             'persistent' => false,

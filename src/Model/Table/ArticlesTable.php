@@ -59,6 +59,7 @@ class ArticlesTable extends Table
             'foreignKey' => 'article_id',
             'targetForeignKey' => 'tag_id',
             'joinTable' => 'articles_tags',
+            'dependant' => true
         ]);
     }
 
